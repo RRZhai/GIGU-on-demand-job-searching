@@ -33,7 +33,7 @@ function ReviewForm({ currentUser, userRole, job }) {
   const [hover, setHover] = useState(-1);
   const [error, setError] = useState(null);
 
-  const { review, dispatch: reviewDispatch } = useContext(ReviewContext);
+  const { dispatch: reviewDispatch } = useContext(ReviewContext);
   const reviewSchema = yup.object().shape({
     content: yup
       .string()

@@ -5,7 +5,6 @@ import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
 import Reviews from "./Reviews";
 
-import { useParams, useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { useContext } from "react";
 import { ReviewContext } from "../context/reviewContext";
