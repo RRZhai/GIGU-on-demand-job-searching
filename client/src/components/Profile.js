@@ -1,29 +1,17 @@
 import Drawer from "@mui/material/Drawer";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import EditIcon from "@mui/icons-material/Edit";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
-
 import Reviews from "./Reviews";
 
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { Typography } from "@mui/material";
 import { useContext } from "react";
 import { ReviewContext } from "../context/reviewContext";
 
 
 const Profile = ({ profileUser, updateCurrentUser, currentUser }) => {
-  const navigate = useNavigate();
-  const { username } = useParams();
 
   const { reviews } = useContext(ReviewContext);
 

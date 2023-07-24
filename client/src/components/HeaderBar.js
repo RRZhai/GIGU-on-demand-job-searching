@@ -1,25 +1,20 @@
-import React, { useEffect } from "react";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import React from "react";
+import { ThemeProvider } from "@mui/material/styles";
 import { AppBar } from "@mui/material";
-import { Box } from "@mui/material";
 import { Toolbar } from "@mui/material";
 import { Typography } from "@mui/material";
 import { Button, Badge } from "@mui/material";
-import { GlobalStyles } from "@mui/material";
 import { TextField } from "@mui/material";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import AdbIcon from "@mui/icons-material/Adb";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MailIcon from "@mui/icons-material/Mail";
-import SearchIcon from "@mui/icons-material/Search";
 import { UserContext } from "../context/userContext";
 import { useContext } from "react";
-import { orange, green } from "@mui/material/colors";
 function HeaderBar({
   currentUser,
   updateCurrentUser,
@@ -30,7 +25,7 @@ function HeaderBar({
   handleProfileUser,
   theme,
 }) {
-  const { user, dispatch: userDispatch } = useContext(UserContext);
+  const { dispatch: userDispatch } = useContext(UserContext);
 
   const isActive = true;
   const notActive = false;

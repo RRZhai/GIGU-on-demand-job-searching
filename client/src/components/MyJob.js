@@ -1,21 +1,10 @@
 import * as React from "react";
 import {
-  Stack,
-  Card,
   Paper,
   styled,
-  Grid,
-  Button,
-  CardActions,
-  CardContent,
   Typography,
   Container,
-  IconButton,
-  Avatar,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
 import Job from "./Job";
 
 const MyJob = ({

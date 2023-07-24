@@ -7,8 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { IconButton } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
@@ -25,8 +24,6 @@ const Job = ({
 }) => {
   const [readMore, setReadMore] = useState(false);
   const [addReview, setAddReview] = useState(false);
-
-  const navigate = useNavigate();
 
   const handleReadMore = () => {
     setReadMore((current) => !current);

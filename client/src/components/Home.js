@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Box from "@mui/material/Box";
 
 const Home = ({ handleSetRole, currentUser }) => {
   return (
@@ -7,7 +6,7 @@ const Home = ({ handleSetRole, currentUser }) => {
         <div>
           {currentUser ? (
             <div className="image-wrapper">
-              <img className='zoom' src="https://www.betterup.com/hs-fs/hubfs/group%20of%20business%20people%20having%20a%20meeting.jpg?width=964&name=group%20of%20business%20people%20having%20a%20meeting.jpg" />
+              <img className='zoom' alt="jobseeker" src="https://www.betterup.com/hs-fs/hubfs/group%20of%20business%20people%20having%20a%20meeting.jpg?width=964&name=group%20of%20business%20people%20having%20a%20meeting.jpg" />
               <Link
                 className="content"
                 to={"/jobs"}
@@ -19,7 +18,7 @@ const Home = ({ handleSetRole, currentUser }) => {
             </div>
           ) : (
             <div className="image-wrapper">
-              <img className='zoom' src="https://www.betterup.com/hs-fs/hubfs/group%20of%20business%20people%20having%20a%20meeting.jpg?width=964&name=group%20of%20business%20people%20having%20a%20meeting.jpg" />
+              <img className='zoom' alt="jobseeker"  src="https://www.betterup.com/hs-fs/hubfs/group%20of%20business%20people%20having%20a%20meeting.jpg?width=964&name=group%20of%20business%20people%20having%20a%20meeting.jpg" />
               <Link
                 className="content"
                 to={"/login"}
@@ -34,7 +33,7 @@ const Home = ({ handleSetRole, currentUser }) => {
         <div>
           {currentUser ? (
             <div className="image-wrapper">
-              <img className='zoom' src="https://content.fortune.com/wp-content/uploads/2022/07/Babysitter-Hybrid-Work-GettyImages-1028379220.jpg?w=1440&q=75" />
+              <img className='zoom' alt="employee" src="https://content.fortune.com/wp-content/uploads/2022/07/Babysitter-Hybrid-Work-GettyImages-1028379220.jpg?w=1440&q=75" />
               <Link
                 className="content"
                 to={"/newjob"}
@@ -46,7 +45,7 @@ const Home = ({ handleSetRole, currentUser }) => {
             </div>
           ) : (
             <div className="image-wrapper">
-              <img className='zoom' src="https://content.fortune.com/wp-content/uploads/2022/07/Babysitter-Hybrid-Work-GettyImages-1028379220.jpg?w=1440&q=75" />
+              <img className='zoom' alt="employee" src="https://content.fortune.com/wp-content/uploads/2022/07/Babysitter-Hybrid-Work-GettyImages-1028379220.jpg?w=1440&q=75" />
               <Link
                 className="content"
                 to={"/login"}

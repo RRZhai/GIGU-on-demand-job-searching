@@ -11,7 +11,6 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -23,10 +22,9 @@ import { UserContext } from "../context/userContext";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Error from "./Error";
-import { Upcoming } from "@mui/icons-material";
 
 const SignUpForm = ({ currentUser, updateCurrentUser }) => {
-  const { user, dispatch : userDispatch } = useContext(UserContext)
+  const { dispatch : userDispatch } = useContext(UserContext)
 
   const navigate = useNavigate();
   const defaultTheme = createTheme();

@@ -26,7 +26,7 @@ import * as yup from "yup";
 import Error from "./Error";
 
 const LoginForm = ({ currentUser, updateCurrentUser }) => {
-  const { user, dispatch: userDispatch } = useContext(UserContext);
+  const { dispatch: userDispatch } = useContext(UserContext);
   const defaultTheme = createTheme();
   const navigate = useNavigate();
   if (currentUser) {
@@ -39,10 +39,6 @@ const LoginForm = ({ currentUser, updateCurrentUser }) => {
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
-  };
-
-  const handleGoogleLogin = (userObject) => {
-    fetch("/login_with_google/callback", {});
   };
 
   const userSchema = yup.object().shape({

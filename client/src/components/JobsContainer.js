@@ -1,7 +1,5 @@
-import React, { useContext } from "react";
-import { useState } from "react";
+import React from "react";
 import Job from "./Job";
-import { JobContext } from "../context/jobContext";
 import { Container } from "@mui/material";
 const JobsContainer = ({
   userRole,

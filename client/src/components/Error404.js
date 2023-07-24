@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { green, lightBlue } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 

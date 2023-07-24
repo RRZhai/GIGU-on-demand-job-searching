@@ -2,12 +2,13 @@ import * as React from "react";
 import { Rating, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 import StarIcon from "@mui/icons-material/Star";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import { useFormik } from "formik";
 import { useContext } from "react";
 import { ReviewContext } from "../context/reviewContext";
 import * as yup from "yup";
+import Error from "./Error";
 
 
 const labels: { [index: string]: string } = {
@@ -103,6 +104,7 @@ function ReviewForm({ currentUser, userRole, job }) {
         onChange={formik.handleChange}
         maxRows={4}
       />
+      {error ? <Error error={error} /> : null}
       <Button variant="contained" type="submit" size="small">
         submit
       </Button>

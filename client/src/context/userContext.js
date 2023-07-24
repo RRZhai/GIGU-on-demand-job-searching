@@ -1,5 +1,4 @@
 import { useEffect, useReducer, createContext } from "react";
-import Cookie from "js-cookie";
 
 const UserContext = createContext();
 

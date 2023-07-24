@@ -1,4 +1,4 @@
-import { useEffect, useReducer, createContext, useState } from "react";
+import { useReducer, createContext } from "react";
 
 const JobContext = createContext();
 
