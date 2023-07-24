@@ -38,8 +38,8 @@
     "yup": "^1.2.0"
   },
   "scripts": {
-    "start": "PORT=4000 react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts --openssl-legacy-provider build",
+    "start": "PORT=4000 react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
