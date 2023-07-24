@@ -1,7 +1,5 @@
 import * as React from "react";
 import {
-  Paper,
-  styled,
   Typography,
   Container,
 } from "@mui/material";
