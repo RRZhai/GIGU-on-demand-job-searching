@@ -28,10 +28,12 @@ const JobForm = ({ handleSubmitJob, currentUser }) => {
       .max(200, "Description must be at most 200 characters")
       .required("Job description is required"),
     pay_rate: yup.number().required("Payrate is required"),
-    employee_id: yup.number().required("You must login first!"),
     address: yup.string().required("Please enter a valid address"),
     city: yup.string().required("Please enter a valid city"),
     state: yup.string().required("Please enter a valid state"),
+    date: yup.string().required("Please enter a valid date"),
+    start_time: yup.string().required("Please enter a valid start time"),
+    end_time: yup.string().required("Please enter a valid end time"),
   });
 
   const navigate = useNavigate();

@@ -3,7 +3,7 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request, make_response
+from flask import request, make_response, render_template
 from flask_restful import Resource
 from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity, jwt_required, JWTManager, set_access_cookies, set_refresh_cookies, unset_jwt_cookies
 from datetime import timedelta
@@ -67,8 +67,9 @@ app.register_blueprint(me_bp)
 @app.route('/login_with_google')
 @app.route('/me')
 
-def index(id=None, name=None):
-    return make_response(open('index.html').read())
+@app.route('/<int:id>')
+def index(id=0):
+    return render_template('index.html')
 
 
 if __name__ == '__main__':

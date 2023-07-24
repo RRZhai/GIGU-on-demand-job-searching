@@ -28,18 +28,16 @@ from flask_jwt_extended import (
     verify_jwt_in_request
 )
 
-from flask_login import (
-    LoginManager,
-    current_user,
-    login_required,
-    login_user,
-    logout_user,
-)
 from oauthlib.oauth2 import WebApplicationClient
 import requests
 
 # Instantiate app, set attributes
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    static_url_path='',
+    static_folder='../client/build',
+    template_folder='../client/build'
+)
 
 load_dotenv(".env")
 app.secret_key=os.environ.get("SECRET_KEY", 'dev')
