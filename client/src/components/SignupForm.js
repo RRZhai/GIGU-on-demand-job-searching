@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 
 import Avatar from "@mui/material/Avatar";
+import Alert from "@mui/material/Alert";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -125,7 +126,7 @@ const SignUpForm = ({ currentUser, updateCurrentUser }) => {
                     name="email"
                     onChange={formik.handleChange}
                   />
-                  <p style={{ color: "red" }}>{formik.errors.email}</p>
+                  {formik.errors.email ? <Alert severity="error">{formik.errors.email}</ Alert> : null}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -136,7 +137,7 @@ const SignUpForm = ({ currentUser, updateCurrentUser }) => {
                     name="name"
                     onChange={formik.handleChange}
                   />
-                  <p style={{ color: "red" }}>{formik.errors.name}</p>
+                  {formik.errors.name ? <Alert severity="error">{formik.errors.name}</ Alert> : null}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -161,7 +162,7 @@ const SignUpForm = ({ currentUser, updateCurrentUser }) => {
                       ),
                     }}
                   />
-                  <p style={{ color: "red" }}>{formik.errors.password}</p>
+                  {formik.errors.password ? <Alert severity="error">{formik.errors.password}</ Alert> : null}
                 </Grid>
               {errors ? <Error msg={errors} /> : null}
               <Button

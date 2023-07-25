@@ -185,7 +185,7 @@ const Job = ({
       </CardContent>
       <CardContent>
         {addReview ? (
-          <ReviewForm job={job} currentUser={currentUser} userRole={userRole} />
+          <ReviewForm job={job} currentUser={currentUser} userRole={userRole} handleProfileUser={handleProfileUser} />
         ) : null}
       </CardContent>
     </Card>

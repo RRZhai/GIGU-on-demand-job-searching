@@ -11,6 +11,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimeField } from "@mui/x-date-pickers/TimeField";
+import Alert from '@mui/material/Alert';
 import Error from "./Error";
 
 const JobForm = ({ handleSubmitJob, currentUser }) => {
@@ -137,6 +138,7 @@ const JobForm = ({ handleSubmitJob, currentUser }) => {
         placeholder="Please describe the job"
         onChange={formik.handleChange}
       />
+      {formik.errors.description ? <Alert severity="error">{formik.errors.description}</ Alert> : null}
       <TextField
         fullWidth
         required
@@ -145,6 +147,7 @@ const JobForm = ({ handleSubmitJob, currentUser }) => {
         placeholder="Please enter the payrate. Ex: $15/hr"
         onChange={formik.handleChange}
       />
+      {formik.errors.pay_rate ? <Alert severity="error">{formik.errors.pay_rate}</ Alert> : null}
       <TextField
         fullWidth
         required
@@ -153,6 +156,7 @@ const JobForm = ({ handleSubmitJob, currentUser }) => {
         placeholder="Please enter the address"
         onChange={formik.handleChange}
       />
+      {formik.errors.address ? <Alert severity="error">{formik.errors.address}</ Alert> : null}
       <TextField
         fullWidth
         required
@@ -161,6 +165,7 @@ const JobForm = ({ handleSubmitJob, currentUser }) => {
         placeholder="Please enter the city"
         onChange={formik.handleChange}
       />
+      {formik.errors.city ? <Alert severity="error">{formik.errors.city}</ Alert> : null}
       <TextField
         fullWidth
         required
@@ -169,8 +174,10 @@ const JobForm = ({ handleSubmitJob, currentUser }) => {
         placeholder="Please enter the state"
         onChange={formik.handleChange}
       />
+      {formik.errors.state ? <Alert severity="error">{formik.errors.state}</ Alert> : null}
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker name="date" label="Date" value={formik.values.date} onChange={date => formik.setFieldValue('date', date)} />
+        {formik.errors.end_time ? <Alert severity="error">{formik.errors.date}</ Alert> : null}
         <TimeField
           fullWidth
           name="start_time"
@@ -178,6 +185,7 @@ const JobForm = ({ handleSubmitJob, currentUser }) => {
           onChange={time => formik.setFieldValue('start_time', time)}
           format="HH:mm"
         />
+        {formik.errors.start_time ? <Alert severity="error">{formik.errors.start_time}</ Alert> : null}
         <TimeField
           fullWidth
           name="end_time"
@@ -185,6 +193,7 @@ const JobForm = ({ handleSubmitJob, currentUser }) => {
           onChange={time => formik.setFieldValue('end_time', time)}
           format="HH:mm"
         />
+        {formik.errors.end_time ? <Alert severity="error">{formik.errors.end_time}</ Alert> : null}
       </LocalizationProvider>
       {error ? <Error message={error} /> : null}
       <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>

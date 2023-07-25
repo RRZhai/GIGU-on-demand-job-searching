@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Rating, TextField } from "@mui/material";
+import { Rating, TextField, Alert } from "@mui/material";
 import Box from "@mui/material/Box";
 import StarIcon from "@mui/icons-material/Star";
 import { useState } from "react";
@@ -7,9 +7,9 @@ import Button from "@mui/material/Button";
 import { useFormik } from "formik";
 import { useContext } from "react";
 import { ReviewContext } from "../context/reviewContext";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import Error from "./Error";
-
 
 const labels: { [index: string]: string } = {
   0.5: "Useless",
@@ -28,10 +28,11 @@ function getLabelText(value) {
   return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
 }
 
-function ReviewForm({ currentUser, userRole, job }) {
+function ReviewForm({ currentUser, userRole, job, handleProfileUser }) {
   const [value, setValue] = useState(0);
   const [hover, setHover] = useState(-1);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const { dispatch: reviewDispatch } = useContext(ReviewContext);
   const reviewSchema = yup.object().shape({
@@ -40,15 +41,13 @@ function ReviewForm({ currentUser, userRole, job }) {
       .min(10, "Description must be at least 10 characters")
       .max(200, "Description must be at most 200 characters")
       .required("Review content is required"),
-    job_id: yup.number().required("Job ID is required"),
-    reviewer_id: yup.number().required("You must login first!"),
   });
 
   const reviewerId = job?.employee_id === currentUser.id ? job.hires?.job_seeker_id : job.employee_id;
 
   const formik = useFormik({
     initialValues: {
-      job_id: job?.id,
+      job_id: job.id,
       rating: value,
       reviewer_id:reviewerId,
       content: "",
@@ -63,7 +62,10 @@ function ReviewForm({ currentUser, userRole, job }) {
         .then((res) => {
           if (res.ok) {
             res.json().then((data) => {
+              debugger
               reviewDispatch({ type: "add", payload: data });
+              handleProfileUser(data.user)
+              navigate(`/profile/:name`)
             });
           } else {
             res.json().then((error) => setError(error.message));
@@ -104,6 +106,7 @@ function ReviewForm({ currentUser, userRole, job }) {
         onChange={formik.handleChange}
         maxRows={4}
       />
+      {formik.errors.content ? <Alert severity="error">{formik.errors.content}</ Alert> : null}
       {error ? <Error error={error} /> : null}
       <Button variant="contained" type="submit" size="small">
         submit

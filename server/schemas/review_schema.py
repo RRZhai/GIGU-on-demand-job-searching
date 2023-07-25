@@ -12,10 +12,10 @@ class ReviewSchema(ma.SQLAlchemySchema):
         model = Review
         load_instance = True
         ordered = True
-        fields = ("id", "content", "rating", 'job_id', 'reviewer_id', "url")
+        fields = ("id", "content", "rating", 'job_id', 'reviewer_id', 'user', "url")
     
     job = fields.Nested("JobSchema", only=("id", "url"))
-    user = fields.Nested("UserSchema", only=("id", "email", "url"))
+    user = fields.Nested("UserSchema", only=("id", "email", 'name', "url"))
     url = ma.Hyperlinks(
         {
             "self": ma.URLFor(
