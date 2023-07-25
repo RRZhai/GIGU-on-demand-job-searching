@@ -94,6 +94,7 @@ def callback():
 
     if not existing_user: 
         user = user_schema.load(data)
+        import ipdb; ipdb.set_trace()
         db.session.add(user)
         db.session.commit()
 

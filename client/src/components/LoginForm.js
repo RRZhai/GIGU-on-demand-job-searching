@@ -163,26 +163,9 @@ const LoginForm = ({ currentUser, updateCurrentUser }) => {
               </Button>
               <GoogleLogin
                 onSuccess={(credentialResponse) => {
-                  console.log(credentialResponse);
                   var userObject = jwt_decode(credentialResponse.credential);
-                  fetch("/login_with_google/callback", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                  })
-                    .then((resp) => {
-                      if (resp.ok) {
-                        resp.json().then((data) => {
-                          userDispatch({ type: "fetch", payload: data });
-                          updateCurrentUser(data?.user);
-                          navigate("/");
-                        });
-                      } else {
-                        resp.json().then((err) => setErrors(err));
-                      }
-                    })
-                    .catch((err) => setErrors(err));
-                  updateCurrentUser(userObject);
-                }}
+                  userDispatch({ type: "fetch", payload: userObject });
+                  updateCurrentUser(userObject)}}
                 onError={() => {}}
               />
               <Grid container>
