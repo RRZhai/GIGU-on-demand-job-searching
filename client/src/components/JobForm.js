@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
@@ -11,10 +11,11 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimeField } from "@mui/x-date-pickers/TimeField";
-import Alert from '@mui/material/Alert';
+import Alert from "@mui/material/Alert";
 import Error from "./Error";
+import Error404 from "./Error404";
 
-const JobForm = ({ handleSubmitJob, currentUser }) => {
+const JobForm = ({ handleSubmitJob, currentUser, userRole }) => {
   const [error, setError] = useState(null);
 
   const jobSchema = yup.object().shape({
@@ -109,97 +110,129 @@ const JobForm = ({ handleSubmitJob, currentUser }) => {
   ];
 
   return (
-    <Box
-      component="form"
-      sx={{
-        "& .MuiTextField-root": { m: 1, width: "25ch" },
-      }}
-      onSubmit={formik.handleSubmit}
-    >
-      <TextField
-        name="job_type"
-        select
-        label="Required"
-        defaultValue="Babysitting"
-        helperText="Please select your job type"
-        onChange={formik.handleChange}
-      >
-        {jobTypes.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </TextField>
-      <TextField
-        fullWidth
-        required
-        name="description"
-        label="Description"
-        placeholder="Please describe the job"
-        onChange={formik.handleChange}
-      />
-      {formik.errors.description ? <Alert severity="error">{formik.errors.description}</ Alert> : null}
-      <TextField
-        fullWidth
-        required
-        name="pay_rate"
-        label="Payrate"
-        placeholder="Please enter the payrate. Ex: $15/hr"
-        onChange={formik.handleChange}
-      />
-      {formik.errors.pay_rate ? <Alert severity="error">{formik.errors.pay_rate}</ Alert> : null}
-      <TextField
-        fullWidth
-        required
-        name="address"
-        label="Address"
-        placeholder="Please enter the address"
-        onChange={formik.handleChange}
-      />
-      {formik.errors.address ? <Alert severity="error">{formik.errors.address}</ Alert> : null}
-      <TextField
-        fullWidth
-        required
-        name="city"
-        label="City"
-        placeholder="Please enter the city"
-        onChange={formik.handleChange}
-      />
-      {formik.errors.city ? <Alert severity="error">{formik.errors.city}</ Alert> : null}
-      <TextField
-        fullWidth
-        required
-        name="state"
-        label="State"
-        placeholder="Please enter the state"
-        onChange={formik.handleChange}
-      />
-      {formik.errors.state ? <Alert severity="error">{formik.errors.state}</ Alert> : null}
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DatePicker name="date" label="Date" value={formik.values.date} onChange={date => formik.setFieldValue('date', date)} />
-        {formik.errors.end_time ? <Alert severity="error">{formik.errors.date}</ Alert> : null}
-        <TimeField
-          fullWidth
-          name="start_time"
-          value={formik.values.start_time}
-          onChange={time => formik.setFieldValue('start_time', time)}
-          format="HH:mm"
-        />
-        {formik.errors.start_time ? <Alert severity="error">{formik.errors.start_time}</ Alert> : null}
-        <TimeField
-          fullWidth
-          name="end_time"
-          value={formik.values.end_time}
-          onChange={time => formik.setFieldValue('end_time', time)}
-          format="HH:mm"
-        />
-        {formik.errors.end_time ? <Alert severity="error">{formik.errors.end_time}</ Alert> : null}
-      </LocalizationProvider>
-      {error ? <Error message={error} /> : null}
-      <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-        Submit
-      </Button>
-    </Box>
+    <Container>
+      {userRole === "employee" ? (
+        <Box
+          component="form"
+          sx={{
+            "& .MuiTextField-root": { m: 1, width: "25ch" },
+          }}
+          onSubmit={formik.handleSubmit}
+        >
+          <TextField
+            name="job_type"
+            select
+            label="Required"
+            defaultValue="Babysitting"
+            helperText="Please select your job type"
+            onChange={formik.handleChange}
+          >
+            {jobTypes.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            fullWidth
+            required
+            name="description"
+            label="Description"
+            placeholder="Please describe the job"
+            onChange={formik.handleChange}
+          />
+          {formik.errors.description ? (
+            <Alert severity="error">{formik.errors.description}</Alert>
+          ) : null}
+          <TextField
+            fullWidth
+            required
+            name="pay_rate"
+            label="Payrate"
+            placeholder="Please enter the payrate. Ex: $15/hr"
+            onChange={formik.handleChange}
+          />
+          {formik.errors.pay_rate ? (
+            <Alert severity="error">{formik.errors.pay_rate}</Alert>
+          ) : null}
+          <TextField
+            fullWidth
+            required
+            name="address"
+            label="Address"
+            placeholder="Please enter the address"
+            onChange={formik.handleChange}
+          />
+          {formik.errors.address ? (
+            <Alert severity="error">{formik.errors.address}</Alert>
+          ) : null}
+          <TextField
+            fullWidth
+            required
+            name="city"
+            label="City"
+            placeholder="Please enter the city"
+            onChange={formik.handleChange}
+          />
+          {formik.errors.city ? (
+            <Alert severity="error">{formik.errors.city}</Alert>
+          ) : null}
+          <TextField
+            fullWidth
+            required
+            name="state"
+            label="State"
+            placeholder="Please enter the state"
+            onChange={formik.handleChange}
+          />
+          {formik.errors.state ? (
+            <Alert severity="error">{formik.errors.state}</Alert>
+          ) : null}
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              name="date"
+              label="Date"
+              value={formik.values.date}
+              onChange={(date) => formik.setFieldValue("date", date)}
+            />
+            {formik.errors.end_time ? (
+              <Alert severity="error">{formik.errors.date}</Alert>
+            ) : null}
+            <TimeField
+              fullWidth
+              name="start_time"
+              value={formik.values.start_time}
+              onChange={(time) => formik.setFieldValue("start_time", time)}
+              format="HH:mm"
+            />
+            {formik.errors.start_time ? (
+              <Alert severity="error">{formik.errors.start_time}</Alert>
+            ) : null}
+            <TimeField
+              fullWidth
+              name="end_time"
+              value={formik.values.end_time}
+              onChange={(time) => formik.setFieldValue("end_time", time)}
+              format="HH:mm"
+            />
+            {formik.errors.end_time ? (
+              <Alert severity="error">{formik.errors.end_time}</Alert>
+            ) : null}
+          </LocalizationProvider>
+          {error ? <Error message={error} /> : null}
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Submit
+          </Button>
+        </Box>
+      ) : (
+        <Error404 />
+      )}
+    </Container>
   );
 };
 

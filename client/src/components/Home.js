@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Home = ({ handleSetRole, currentUser }) => {
   return (
       <div className="grid">
-        <div>
+        <div className="image-card">
           {currentUser ? (
             <div className="image-wrapper">
               <img className='zoom' alt="jobseeker" src="https://www.betterup.com/hs-fs/hubfs/group%20of%20business%20people%20having%20a%20meeting.jpg?width=964&name=group%20of%20business%20people%20having%20a%20meeting.jpg" />
@@ -30,7 +30,7 @@ const Home = ({ handleSetRole, currentUser }) => {
             </div>
           )}
         </div>
-        <div>
+        <div className="image-card">
           {currentUser ? (
             <div className="image-wrapper">
               <img className='zoom' alt="employee" src="https://content.fortune.com/wp-content/uploads/2022/07/Babysitter-Hybrid-Work-GettyImages-1028379220.jpg?w=1440&q=75" />

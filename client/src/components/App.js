@@ -247,6 +247,7 @@ const App = () => {
                 theme={theme}
                 currentUser={user}
                 handleSubmitJob={handleSubmitJob}
+                userRole={userRole}
               />
             }
           />

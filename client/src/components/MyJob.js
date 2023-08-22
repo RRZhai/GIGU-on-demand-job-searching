@@ -1,8 +1,5 @@
 import * as React from "react";
-import {
-  Typography,
-  Container,
-} from "@mui/material";
+import { Typography, Container, Grid } from "@mui/material";
 import Job from "./Job";
 
 const MyJob = ({
@@ -14,7 +11,6 @@ const MyJob = ({
   pendingJobs,
   handleJobComplete,
 }) => {
-
   const relatedJobsAsEmployee = jobs?.filter(
     (job) => job.employee_id === currentUser?.id
   );
@@ -60,28 +56,37 @@ const MyJob = ({
   } else {
     return (
       <Container>
-        <Typography variant="h5" component="div">
-          My Work and My Hire
-        </Typography>
-        {relatedJobsAsEmployee?.map((job) => (
-          <Job
-            key={job.id}
-            job={job}
-            currentUser={currentUser}
-            handleJobDelete={handleJobDelete}
-            handleProfileUser={handleProfileUser}
-            handleJobComplete={handleJobComplete}
-          />
-        ))}
-        {relatedJobsAsJobseeker?.map((job) => (
-          <Job
-            key={job.id}
-            job={job}
-            currentUser={currentUser}
-            handleJobDelete={handleJobDelete}
-            handleProfileUser={handleProfileUser}
-          />
-        ))}
+        <Grid container>
+          <div className="image-card">
+            <Typography variant="h5" component="div">
+              My Work
+            </Typography>
+            {relatedJobsAsEmployee?.map((job) => (
+              <Job
+                key={job.id}
+                job={job}
+                currentUser={currentUser}
+                handleJobDelete={handleJobDelete}
+                handleProfileUser={handleProfileUser}
+                handleJobComplete={handleJobComplete}
+              />
+            ))}
+          </div>
+          <div className="image-card">
+            <Typography variant="h5" component="div">
+              My Hire
+            </Typography>
+            {relatedJobsAsJobseeker?.map((job) => (
+              <Job
+                key={job.id}
+                job={job}
+                currentUser={currentUser}
+                handleJobDelete={handleJobDelete}
+                handleProfileUser={handleProfileUser}
+              />
+            ))}
+          </div>
+        </Grid>
       </Container>
     );
   }

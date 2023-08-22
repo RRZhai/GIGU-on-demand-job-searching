@@ -16,10 +16,11 @@ export default function Error404() {
         flexDirection: "Column",
       }}
     >
-      <Typography variant="h1" style={{ color: "blue", marginTop: "-100px" }}>
-        404
+      <Typography variant="h3">
+      SORRY
       </Typography>
-      <Typography variant="h5" sx={{ color: "green" }}>
+      <Typography variant="h5" sx={{ color: "primary" }}>
+      The page is not found, or you are not authorized to view the page.
       </Typography>
       <Button variant="contained" color="primary" onClick={() => navigate("/")}>
         Go Home

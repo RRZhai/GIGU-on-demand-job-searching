@@ -1,10 +1,11 @@
 import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { AppBar } from "@mui/material";
-import { Toolbar } from "@mui/material";
-import { Typography } from "@mui/material";
+import { Toolbar, Switch } from "@mui/material";
+import { Typography, Stack } from "@mui/material";
 import { Button, Badge } from "@mui/material";
 import { TextField } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Tooltip from "@mui/material/Tooltip";
@@ -34,6 +35,8 @@ function HeaderBar({
 
   const navigate = useNavigate();
 
+  const label = { inputProps: { "aria-label": "Switch demo" } };
+
   const logout = () => {
     fetch("/logout", {
       method: "POST",
@@ -61,9 +64,6 @@ function HeaderBar({
 
   return (
     <ThemeProvider theme={theme}>
-      {/* <GlobalStyles
-        styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
-      /> */}
       <AppBar
         position="static"
         color="primary"
@@ -130,93 +130,104 @@ function HeaderBar({
               size="small"
             />
           </div>
-          <nav>
+          <div>
             {currentUser ? (
               <nav>
                 <Link>
-                  <Badge
-                    color="secondary"
-                    variant="dot"
-                    component={Link}
-                    to="/chat"
+                  <Tooltip title="Open settings">
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                      <Avatar
+                        alt={currentUser?.username}
+                        src={`../${currentUser.profile_pic_num}.png`}
+                      />
+                    </IconButton>
+                  </Tooltip>
+                  <Menu
+                    sx={{ mt: "45px" }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
                   >
-                    <MailIcon />
-                  </Badge>
-                  <>
-                    <Tooltip title="Open settings">
-                      <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        <Avatar
-                          alt={currentUser?.username}
-                          src={`../${currentUser.profile_pic_num}.png`}
-                        />
-                      </IconButton>
-                    </Tooltip>
-                    <Menu
-                      sx={{ mt: "45px" }}
-                      id="menu-appbar"
-                      anchorEl={anchorElUser}
-                      anchorOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
+                    <MenuItem
+                      key="profile"
+                      onClick={() => {
+                        handleCloseUserMenu();
+                        handleProfileUser(currentUser);
                       }}
-                      keepMounted
-                      transformOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
-                      }}
-                      open={Boolean(anchorElUser)}
-                      onClose={handleCloseUserMenu}
+                      component={Link}
+                      to="/profile/:name"
                     >
-                      <MenuItem
-                        key="profile"
-                        onClick={() => {
-                          handleCloseUserMenu();
-                          handleProfileUser(currentUser);
-                        }}
-                        component={Link}
-                        to="/profile/:name"
-                      >
-                        <Typography textAlign="center">Profile</Typography>
-                      </MenuItem>
-                      <MenuItem
-                        key="My Active Job"
-                        onClick={(e) => handleActiveJob(isActive)}
-                        component={Link}
-                        to="/myjobs"
-                      >
-                        <Typography textAlign="right">My Active Job</Typography>
-                      </MenuItem>
-                      <MenuItem
-                        key="My Past Job"
-                        onClick={(e) => handleActiveJob(notActive)}
-                        component={Link}
-                        to="/myjobs"
-                        theme={theme}
-                      >
-                        <Typography textAlign="right">My Past Job</Typography>
-                      </MenuItem>
-                      <MenuItem
-                        key="logout"
-                        onClick={() => {
-                          handleCloseUserMenu();
-                          logout();
-                        }}
-                        component={Link}
-                        to="/"
-                      >
-                        <Typography textAlign="right">Logout</Typography>
-                      </MenuItem>
-                    </Menu>
-                  </>
+                      <Typography textAlign="center">Profile</Typography>
+                    </MenuItem>
+                    <MenuItem
+                      key="My Active Job"
+                      onClick={(e) => handleActiveJob(isActive)}
+                      component={Link}
+                      to="/myjobs"
+                    >
+                      <Typography textAlign="right">My Active Job</Typography>
+                    </MenuItem>
+                    <MenuItem
+                      key="My Past Job"
+                      onClick={(e) => handleActiveJob(notActive)}
+                      component={Link}
+                      to="/myjobs"
+                      theme={theme}
+                    >
+                      <Typography textAlign="right">My Past Job</Typography>
+                    </MenuItem>
+                    <MenuItem
+                      key="logout"
+                      onClick={() => {
+                        handleCloseUserMenu();
+                        logout();
+                      }}
+                      component={Link}
+                      to="/"
+                    >
+                      <Typography textAlign="right">Logout</Typography>
+                    </MenuItem>
+                  </Menu>
                 </Link>
+                {userRole === "jobseeker" ? (
+                  <Tooltip title={userRole}>
+                    <Switch
+                      {...label}
+                      defaultChecked
+                      color="warning"
+                      to={"/jobs"}
+                      onClick={(e) => handleSetRole(e.target.name)}
+                      name="employee"
+                    />
+                  </Tooltip>
+                ) : (
+                  <Tooltip title={userRole}>
+                    <Switch
+                      {...label}
+                      color="warning"
+                      to={"/jobs"}
+                      onClick={(e) => handleSetRole(e.target.name)}
+                      name="jobseeker"
+                    />
+                  </Tooltip>
+                )}
               </nav>
-            ) : null}
-          </nav>
-          {currentUser ? null : (
-            <Button href="login" color="inherit" sx={{ my: 1, mx: 1.5 }}>
-              Login
-            </Button>
-          )}
+            ) : (
+              <Button href="login" color="inherit" sx={{ my: 1, mx: 1.5 }}>
+                Login
+              </Button>
+            )}
+          </div>
         </Toolbar>
       </AppBar>
     </ThemeProvider>
