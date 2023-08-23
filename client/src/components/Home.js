@@ -38,7 +38,7 @@ const Home = ({ handleSetRole, currentUser }) => {
                 className="content"
                 to={"/newjob"}
                 onClick={(e) => handleSetRole(e.target.name)}
-                name="employee"
+                name="employer"
               >
                 Looking for a helper ...
               </Link>
@@ -50,7 +50,7 @@ const Home = ({ handleSetRole, currentUser }) => {
                 className="content"
                 to={"/login"}
                 onClick={(e) => handleSetRole(e.target.name)}
-                name="employee"
+                name="employer"
               >
                 Looking for a helper ...
               </Link>

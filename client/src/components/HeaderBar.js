@@ -204,7 +204,7 @@ function HeaderBar({
                       color="warning"
                       to={"/jobs"}
                       onClick={(e) => handleSetRole(e.target.name)}
-                      name="employee"
+                      name="employer"
                     />
                   </Tooltip>
                 ) : (

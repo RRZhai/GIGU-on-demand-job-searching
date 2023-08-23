@@ -37,7 +37,7 @@ const App = () => {
           },
         })
       );
-    } else if (userRole === "employee") {
+    } else if (userRole === "employer") {
       setTheme(
         createTheme({
           palette: {
