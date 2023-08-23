@@ -79,7 +79,7 @@ function HeaderBar({
           >
             GIGU
           </Typography>
-          {currentUser && userRole === "employee" ? (
+          {currentUser && userRole === "employer" ? (
             <Typography
               noWrap
               sx={{ flexGrow: 1 }}

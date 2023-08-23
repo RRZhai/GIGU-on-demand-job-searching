@@ -18,7 +18,7 @@ const MyJob = ({
   const relatedJobsAsJobseeker = jobs?.filter(
     (job) => job.hires?.job_seeker_id === currentUser?.id
   );
-  if (userRole === "employee") {
+  if (userRole === "employer") {
     return (
       <Container>
         <Typography variant="h5" component="div">

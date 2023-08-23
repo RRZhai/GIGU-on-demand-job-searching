@@ -111,7 +111,7 @@ const JobForm = ({ handleSubmitJob, currentUser, userRole }) => {
 
   return (
     <Container>
-      {userRole === "employee" ? (
+      {userRole === "employer" ? (
         <Box
           component="form"
           sx={{
