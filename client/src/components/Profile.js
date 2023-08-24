@@ -16,6 +16,8 @@ const Profile = ({ profileUser, updateCurrentUser, currentUser }) => {
   const { reviews } = useContext(ReviewContext);
   const [isEdit, setIsEdit] = useState(false);
 
+  const [updateData, setUpdateData] = useState(currentUser);
+
   const filterReview = reviews.filter(
     (review) => review.reviewer_id === profileUser?.id
   );
@@ -33,6 +35,10 @@ const Profile = ({ profileUser, updateCurrentUser, currentUser }) => {
   const handleEdit = () => {
     setIsEdit((current) => !current);
   };
+
+  const handleUpdateData = (e) => {
+    setUpdateData(current => [...current, e.target.value]);
+  }
 
   return (
     <Box>

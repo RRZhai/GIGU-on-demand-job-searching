@@ -82,8 +82,21 @@ const App = () => {
     setFilterJobs((current) => [data, ...current]);
   };
 
-  const updateCurrentUser = (user) => {
-    setCurrentUser(user);
+  const updateCurrentUser = (updateUser) => {
+    fetch("/me", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updateUser),
+    })
+    .then((res) => {
+      if (res.ok) {
+        res.json().then((data) => {
+          userDispatch({ type: "patch", payload: data });
+          setCurrentUser(data);
+        });
+      }
+    })
+    .catch((err) => console.error(err));
   };
 
   const handleJobComplete = (job) => {
