@@ -3,19 +3,22 @@ import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
+import EditIcon from "@mui/icons-material/Edit";
 import Reviews from "./Reviews";
 
-import { Typography } from "@mui/material";
-import { useContext } from "react";
+import { Typography, TextField, Button } from "@mui/material";
+import { useContext, useState } from "react";
 import { ReviewContext } from "../context/reviewContext";
-
+import { useFormik } from "formik";
+import { dark } from "@mui/material/styles/createPalette";
 
 const Profile = ({ profileUser, updateCurrentUser, currentUser }) => {
-
   const { reviews } = useContext(ReviewContext);
+  const [isEdit, setIsEdit] = useState(false);
 
-  const filterReview = reviews.filter((review) => review.reviewer_id===profileUser?.id);
-
+  const filterReview = reviews.filter(
+    (review) => review.reviewer_id === profileUser?.id
+  );
 
   const aveRating = (user, reviews) => {
     let sum = 0;
@@ -25,6 +28,10 @@ const Profile = ({ profileUser, updateCurrentUser, currentUser }) => {
       });
       return sum / reviews?.length;
     }
+  };
+
+  const handleEdit = () => {
+    setIsEdit((current) => !current);
   };
 
   return (
@@ -45,7 +52,7 @@ const Profile = ({ profileUser, updateCurrentUser, currentUser }) => {
         }}
         variant="permanent"
       >
-        <Box sx={{ display: "flex", width: "800px", marginInline: "auto" }}>
+        <Box sx={{ display: "flex", width: "800px" }}>
           <Avatar
             alt={profileUser?.username}
             src={profileUser?.profile_pic_url}
@@ -84,23 +91,44 @@ const Profile = ({ profileUser, updateCurrentUser, currentUser }) => {
           </Box>
           <Box>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              bio: 
+              {profileUser === currentUser ? (
+                <EditIcon onClick={handleEdit} fontSize="small" />
+              ) : (
+                ""
+              )}
+              Bio:
             </Typography>
-            <Typography
-              variant="subtitle1"
-              sx={{
-                width: 300,
-                my: "auto",
-                mx: "auto",
-                alignContent: "center",
-              }}
-            >
-              {profileUser?.bio}
-            </Typography>
+            {isEdit ? (
+              <Box onSubmit={formik.handleSubmit}>
+                <TextField
+                  multiline
+                  variant="standard"
+                  fullWidth
+                  placeholder="Please enter your bio ..."
+                  sx={{ width: "250px" }}
+                  onChange={formik.handleChange}
+                />
+                <Button type='submit' variant="contained" size="small">
+                  SAVE
+                </Button>
+              </Box>
+            ) : (
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  width: 300,
+                  my: "auto",
+                  mx: "auto",
+                  alignContent: "center",
+                }}
+              >
+                {profileUser?.bio}
+              </Typography>
+            )}
           </Box>
         </Box>
       </Drawer>
-      <Reviews profileUser={profileUser} filterReview={filterReview}/>
+      <Reviews profileUser={profileUser} filterReview={filterReview} />
     </Box>
   );
 };

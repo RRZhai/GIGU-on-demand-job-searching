@@ -98,6 +98,7 @@ const Job = ({
         job.status === "active" &&
         job.employee_id !== currentUser.id ? (
           <Button
+            size="small"
             variant="contained"
             onClick={(e) => {
               handleApplyJob(e, job);
@@ -121,9 +122,8 @@ const Job = ({
         >
           Learn More
         </Button>
-        {(job?.employee_id === currentUser?.id && job.status !== 'completed') ? (
+        {job?.employee_id === currentUser?.id && job.status !== "completed" ? (
           <>
-          
             <Button
               variant="contained"
               onClick={(e) => handleJobDelete(job)}
@@ -185,7 +185,12 @@ const Job = ({
       </CardContent>
       <CardContent>
         {addReview ? (
-          <ReviewForm job={job} currentUser={currentUser} userRole={userRole} handleProfileUser={handleProfileUser} />
+          <ReviewForm
+            job={job}
+            currentUser={currentUser}
+            userRole={userRole}
+            handleProfileUser={handleProfileUser}
+          />
         ) : null}
       </CardContent>
     </Card>
