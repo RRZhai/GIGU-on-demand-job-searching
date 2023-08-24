@@ -83,7 +83,7 @@ const App = () => {
   };
 
   const updateCurrentUser = (updateUser) => {
-    fetch("/me", {
+    fetch(`/users/${currentUser.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updateUser),
@@ -235,6 +235,7 @@ const App = () => {
                 theme={theme}
                 currentUser={currentUser}
                 profileUser={profileUser}
+                updateCurrentUser={updateCurrentUser}
               />
             }
           />

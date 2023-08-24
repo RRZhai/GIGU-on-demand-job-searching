@@ -36,8 +36,14 @@ const Profile = ({ profileUser, updateCurrentUser, currentUser }) => {
     setIsEdit((current) => !current);
   };
 
-  const handleUpdateData = (e) => {
-    setUpdateData(current => [...current, e.target.value]);
+  const handleChangeUpdateData = (e) => {
+    setUpdateData({ ...currentUser, [e.target.name]: e.target.value });
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateCurrentUser(updateData);
+    setIsEdit(false);
   }
 
   return (
@@ -105,14 +111,15 @@ const Profile = ({ profileUser, updateCurrentUser, currentUser }) => {
               Bio:
             </Typography>
             {isEdit ? (
-              <Box onSubmit={formik.handleSubmit}>
+              <Box component="form" onSubmit={handleSubmit}>
                 <TextField
                   multiline
                   variant="standard"
                   fullWidth
                   placeholder="Please enter your bio ..."
                   sx={{ width: "250px" }}
-                  onChange={formik.handleChange}
+                  onChange={handleChangeUpdateData}
+                  name="bio"
                 />
                 <Button type='submit' variant="contained" size="small">
                   SAVE

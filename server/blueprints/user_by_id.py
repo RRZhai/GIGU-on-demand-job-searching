@@ -19,7 +19,10 @@ class UserById(Resource):
                 if user.id == session["user_id"]:
                     data = request.get_json()
                     data["id"] = user.id
+                    import ipdb; ipdb.set_trace()
                     user_schema.validate(data)
+
+                    import ipdb; ipdb.set_trace()
 
                     updated_user = user_schema.load(data,
                                                     instance=user, partial=True)
