@@ -48,6 +48,7 @@ class UserSchema(ma.SQLAlchemySchema):
         }
     )
 
+
     @validates("name")
     def validates_username(self, name):
         if user := User.query.filter(User.name == name).first():
