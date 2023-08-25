@@ -42,7 +42,7 @@ const JobForm = ({ handleSubmitJob, currentUser, userRole }) => {
       address: "",
       city: "",
       state: "",
-      employee_id: currentUser?.id,
+      employee_id: currentUser.id,
       hire_id: null,
       date: "",
       start_time: "",
@@ -59,6 +59,8 @@ const JobForm = ({ handleSubmitJob, currentUser, userRole }) => {
         .then((res) => {
           if (res.ok) {
             res.json().then((data) => {
+              console.log(currentUser);
+              debugger;
               handleSubmitJob(data);
               navigate("/jobs");
             });

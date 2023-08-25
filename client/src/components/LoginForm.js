@@ -165,7 +165,8 @@ const LoginForm = ({ currentUser, handleCurrentUser }) => {
                 onSuccess={(credentialResponse) => {
                   var userObject = jwt_decode(credentialResponse.credential);
                   userDispatch({ type: "fetch", payload: userObject });
-                  handleCurrentUser(userObject)}}
+                  handleCurrentUser(userObject);
+                }}
                 onError={() => {}}
               />
               <Grid container>

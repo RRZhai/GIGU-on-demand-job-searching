@@ -116,7 +116,7 @@ const SignUpForm = ({ currentUser, updateCurrentUser }) => {
             <Typography component="h1" variant="h5">
               Sign up
             </Typography>
-            <Box component="form" onSubmit={formik.handleSubmit} sx={{ mt: 3 }}>
+            <Box component="form" onSubmit={formik.handleSubmit} sx={{ mt: 4 }}>
                 <Grid item xs={12}>
                   <TextField
                     required
