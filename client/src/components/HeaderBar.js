@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
-import { AppBar } from "@mui/material";
+import { AppBar, Box } from "@mui/material";
 import { Toolbar, Switch } from "@mui/material";
 import { Typography, Button } from "@mui/material";
 import { TextField } from "@mui/material";
@@ -67,8 +67,8 @@ function HeaderBar({
         elevation={0}
         sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
       >
-        <Toolbar sx={{ flexWrap: "wrap" }}>
-          <Typography
+        <Toolbar disableGutters>
+          <Link
             variant="h5"
             color="inherit"
             noWrap
@@ -77,57 +77,58 @@ function HeaderBar({
             to="/"
             onClick={(e) => handleSetRole(null)}
           >
-            <Avatar src="GIGULogo.png" />
-            GIGU
-          </Typography>
-          {currentUser && userRole === "employer" ? (
-            <Typography
-              noWrap
-              sx={{ flexGrow: 1 }}
-              variant="button"
-              color="text.primary"
-              component={Link}
-              to="/newjob"
-            >
-              Add New Job
-            </Typography>
-          ) : null}
-          {currentUser ? (
-            <Typography
-              noWrap
-              sx={{ flexGrow: 1 }}
-              variant="button"
-              color="text.primary"
-              component={Link}
-              to="/jobs"
-              onClick={(e) => handleActiveJob(isActive)}
-            >
-              All Active Jobs
-            </Typography>
-          ) : (
-            <Typography
-              noWrap
-              sx={{ flexGrow: 1 }}
-              variant="button"
-              color="text.primary"
-              component={Link}
-              to="/login"
-            >
-              All Active Jobs
-            </Typography>
-          )}
-          <div>
-            <TextField
-              id="search-bar"
-              label="Enter a city name"
-              placeholder="Search..."
-              onChange={(e) => {
-                handleJobsByLocation(e.target.value);
-              }}
-              variant="outlined"
-              size="small"
-            />
-          </div>
+            <img src="GIGU-removebg-preview.png" height={"50px"} />
+          </Link>
+          <Box
+            sx={{ p:2, border: "1px" }}
+          >
+            {currentUser && userRole === "employer" ? (
+              <Button
+                noWrap
+                sx={{ flexGrow: 1 }}
+                variant="button"
+                color="text.primary"
+                component={Link}
+                to="/newjob"
+              >
+                Add New Job
+              </Button>
+            ) : null}
+            {currentUser ? (
+              <Button
+                noWrap
+                sx={{ flexGrow: 1 }}
+                variant="button"
+                color="text.primary"
+                component={Link}
+                to="/jobs"
+                onClick={(e) => handleActiveJob(isActive)}
+              >
+                All Active Jobs
+              </Button>
+            ) : (
+              <Button
+                noWrap
+                sx={{ flexGrow: 1 }}
+                variant="button"
+                color="text.primary"
+                component={Link}
+                to="/login"
+              >
+                All Active Jobs
+              </Button>
+            )}
+          </Box>
+          <TextField
+            id="search-bar"
+            label="Enter a city name"
+            placeholder="Search..."
+            onChange={(e) => {
+              handleJobsByLocation(e.target.value);
+            }}
+            variant="outlined"
+            size="small"
+          />
           <div>
             {currentUser ? (
               <nav>
