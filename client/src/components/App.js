@@ -82,6 +82,10 @@ const App = () => {
     setFilterJobs((current) => [data, ...current]);
   };
 
+  const handleCurrentUser = (user) => {
+    setCurrentUser(user);
+  }
+
   const updateCurrentUser = (updateUser) => {
     fetch(`/users/${currentUser.id}`, {
       method: "PATCH",
@@ -198,7 +202,7 @@ const App = () => {
           handleSetRole={handleSetRole}
           handleJobsByLocation={handleJobsByLocation}
           handleProfileUser={handleProfileUser}
-          updateCurrentUser={updateCurrentUser}
+          handleCurrentUser={handleCurrentUser}
           theme={theme}
         />
         <Routes>
@@ -217,7 +221,7 @@ const App = () => {
             element={
               <LoginForm
                 currentUser={currentUser}
-                updateCurrentUser={updateCurrentUser}
+                handleCurrentUser={handleCurrentUser}
                 theme={theme}
               />
             }

@@ -15,7 +15,7 @@ import { UserContext } from "../context/userContext";
 import { useContext } from "react";
 function HeaderBar({
   currentUser,
-  updateCurrentUser,
+  handleCurrentUser,
   userRole,
   handleActiveJob,
   handleSetRole,
@@ -42,7 +42,7 @@ function HeaderBar({
       .then((resp) => {
         if (resp.ok) {
           userDispatch({ type: "remove" });
-          updateCurrentUser(null);
+          handleCurrentUser(null);
           navigate("/");
         } else {
           resp.json().then((err) => setErrors(err));
@@ -77,7 +77,7 @@ function HeaderBar({
             to="/"
             onClick={(e) => handleSetRole(null)}
           >
-            <img src="GIGU-removebg-preview.png" height={"50px"} />
+            <img src="GIGU-removebg-preview.png" height={"50px"} style={{padding:'10px'}} />
           </Link>
           <Box
             sx={{ p:2, border: "1px" }}
@@ -222,7 +222,7 @@ function HeaderBar({
                 )}
               </nav>
             ) : (
-              <Button href="login" color="inherit" sx={{ my: 1, mx: 1.5 }}>
+              <Button to={"/login"} color="inherit" sx={{ my: 1, mx: 1.5 }}>
                 Login
               </Button>
             )}

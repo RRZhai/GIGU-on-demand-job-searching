@@ -25,7 +25,7 @@ import * as yup from "yup";
 
 import Error from "./Error";
 
-const LoginForm = ({ currentUser, updateCurrentUser }) => {
+const LoginForm = ({ currentUser, handleCurrentUser }) => {
   const { dispatch: userDispatch } = useContext(UserContext);
   const defaultTheme = createTheme();
   const navigate = useNavigate();
@@ -62,7 +62,7 @@ const LoginForm = ({ currentUser, updateCurrentUser }) => {
           if (resp.ok) {
             resp.json().then((data) => {
               userDispatch({ type: "fetch", payload: data });
-              updateCurrentUser(data?.user);
+              handleCurrentUser(data?.user);
               navigate("/");
             });
           } else {
@@ -165,7 +165,7 @@ const LoginForm = ({ currentUser, updateCurrentUser }) => {
                 onSuccess={(credentialResponse) => {
                   var userObject = jwt_decode(credentialResponse.credential);
                   userDispatch({ type: "fetch", payload: userObject });
-                  updateCurrentUser(userObject)}}
+                  handleCurrentUser(userObject)}}
                 onError={() => {}}
               />
               <Grid container>
