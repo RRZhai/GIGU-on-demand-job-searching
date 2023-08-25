@@ -222,7 +222,7 @@ function HeaderBar({
                 )}
               </nav>
             ) : (
-              <Button to={"/login"} color="inherit" sx={{ my: 1, mx: 1.5 }}>
+              <Button component={Link} to="/login" color="inherit" sx={{ my: 1, mx: 1.5 }}>
                 Login
               </Button>
             )}
