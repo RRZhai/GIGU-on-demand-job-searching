@@ -77,11 +77,24 @@ function HeaderBar({
             to="/"
             onClick={(e) => handleSetRole(null)}
           >
-            <img src="GIGU-removebg-preview.png" height={"50px"} style={{padding:'10px'}} />
+            <img
+              src="GIGU-removebg-preview.png"
+              height={"50px"}
+              style={{ padding: "10px" }}
+            />
           </Link>
-          <Box
-            sx={{ p:2, border: "1px" }}
-          >
+          <TextField
+            id="search-bar"
+            label="Enter a city name"
+            placeholder="Search..."
+            onChange={(e) => {
+              handleJobsByLocation(e.target.value);
+            }}
+            variant="outlined"
+            size="small"
+            sx={{ border: "10px" }}
+          />
+          <Box sx={{ p: 2, border: "1px" }}>
             {currentUser && userRole === "employer" ? (
               <Button
                 noWrap
@@ -119,19 +132,35 @@ function HeaderBar({
               </Button>
             )}
           </Box>
-          <TextField
-            id="search-bar"
-            label="Enter a city name"
-            placeholder="Search..."
-            onChange={(e) => {
-              handleJobsByLocation(e.target.value);
-            }}
-            variant="outlined"
-            size="small"
-          />
-          <div>
+          <Box
+            style={{ padding: "10px" }}
+            ml="auto"
+            sx={{ display: "flex", alignItems: "center" }}
+          >
             {currentUser ? (
-              <nav>
+              <Box style={{ padding: "10px" }}>
+                {userRole === "jobseeker" ? (
+                  <Tooltip title={userRole}>
+                    <Switch
+                      {...label}
+                      defaultChecked
+                      color="warning"
+                      to={"/jobs"}
+                      onClick={(e) => handleSetRole(e.target.name)}
+                      name="employer"
+                    />
+                  </Tooltip>
+                ) : (
+                  <Tooltip title={userRole}>
+                    <Switch
+                      {...label}
+                      color="warning"
+                      to={"/jobs"}
+                      onClick={(e) => handleSetRole(e.target.name)}
+                      name="jobseeker"
+                    />
+                  </Tooltip>
+                )}
                 <Link>
                   <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -198,35 +227,18 @@ function HeaderBar({
                     </MenuItem>
                   </Menu>
                 </Link>
-                {userRole === "jobseeker" ? (
-                  <Tooltip title={userRole}>
-                    <Switch
-                      {...label}
-                      defaultChecked
-                      color="warning"
-                      to={"/jobs"}
-                      onClick={(e) => handleSetRole(e.target.name)}
-                      name="employer"
-                    />
-                  </Tooltip>
-                ) : (
-                  <Tooltip title={userRole}>
-                    <Switch
-                      {...label}
-                      color="warning"
-                      to={"/jobs"}
-                      onClick={(e) => handleSetRole(e.target.name)}
-                      name="jobseeker"
-                    />
-                  </Tooltip>
-                )}
-              </nav>
+              </Box>
             ) : (
-              <Button component={Link} to="/login" color="inherit" sx={{ my: 1, mx: 1.5 }}>
+              <Button
+                component={Link}
+                to="/login"
+                color="inherit"
+                sx={{ my: 1, mx: 1.5 }}
+              >
                 Login
               </Button>
             )}
-          </div>
+          </Box>
         </Toolbar>
       </AppBar>
     </ThemeProvider>
