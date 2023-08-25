@@ -72,11 +72,12 @@ function HeaderBar({
             variant="h5"
             color="inherit"
             noWrap
-            sx={{ flexGrow: 1 }}
+            sx={{ flexGrow: 2 }}
             component={Link}
             to="/"
             onClick={(e) => handleSetRole(null)}
           >
+            <Avatar src="GIGULogo.png" />
             GIGU
           </Typography>
           {currentUser && userRole === "employer" ? (
