@@ -1,6 +1,6 @@
 import React from "react";
 import Job from "./Job";
-import { Container } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 const JobsContainer = ({
   userRole,
   jobs,
@@ -11,21 +11,23 @@ const JobsContainer = ({
   handleProfileUser,
 }) => {
   return (
-    <Container>
-      {jobs
-        ? jobs.map((job) => (
-            <Job
-              key={job.id}
-              job={job}
-              currentUser={currentUser}
-              userRole={userRole}
-              handleApplyJob={handleApplyJob}
-              handleJobComplete={handleJobComplete}
-              handleProfileUser={handleProfileUser}
-              handleJobDelete={handleJobDelete}
-            />
-          ))
-        : null}
+    <Container >
+      <Stack spacing={2}>
+        {jobs
+          ? jobs.map((job) => (
+              <Job
+                key={job.id}
+                job={job}
+                currentUser={currentUser}
+                userRole={userRole}
+                handleApplyJob={handleApplyJob}
+                handleJobComplete={handleJobComplete}
+                handleProfileUser={handleProfileUser}
+                handleJobDelete={handleJobDelete}
+              />
+            ))
+          : null}
+      </Stack>
     </Container>
   );
 };

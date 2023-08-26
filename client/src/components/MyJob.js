@@ -24,6 +24,7 @@ const MyJob = ({
         <Typography variant="h5" component="div">
           My Hire
         </Typography>
+        <Stack spacing={2}>
         {relatedJobsAsEmployee.map((job) => (
           <Job
             key={job.id}
@@ -34,11 +35,13 @@ const MyJob = ({
             handleProfileUser={handleProfileUser}
           />
         ))}
+        </Stack>
       </Container>
     );
   } else if (userRole === "jobseeker") {
     return (
       <Container>
+        <Stack spacing={2}>
         <Typography variant="h5" component="div">
           My Work
         </Typography>
@@ -51,6 +54,7 @@ const MyJob = ({
             handleProfileUser={handleProfileUser}
           />
         ))}
+        </Stack>
       </Container>
     );
   } else {
@@ -61,6 +65,7 @@ const MyJob = ({
             <Typography variant="h5" component="div">
               My Work
             </Typography>
+            <Stack spacing={2}>
             {relatedJobsAsEmployee?.map((job) => (
               <Job
                 key={job.id}
@@ -71,11 +76,13 @@ const MyJob = ({
                 handleJobComplete={handleJobComplete}
               />
             ))}
+            </Stack>
           </div>
           <div className="image-card">
             <Typography variant="h5" component="div">
               My Hire
             </Typography>
+            <Stack spacing={2}>
             {relatedJobsAsJobseeker?.map((job) => (
               <Job
                 key={job.id}
@@ -85,6 +92,7 @@ const MyJob = ({
                 handleProfileUser={handleProfileUser}
               />
             ))}
+            </Stack>
           </div>
         </Stack>
       </Container>
