@@ -19,8 +19,8 @@ const MyJob = ({
     (job) => job.hires?.job_seeker_id === currentUser?.id
   );
 
-  console.log("relatedJobsAsEmployer", relatedJobsAsEmployer);
-  console.log("relatedJobsAsJobseeker", relatedJobsAsJobseeker);
+  // console.log("relatedJobsAsEmployer", relatedJobsAsEmployer);
+  // console.log("relatedJobsAsJobseeker", relatedJobsAsJobseeker);
   if (userRole === "employer") {
     return (
       <Container>
@@ -76,7 +76,6 @@ const MyJob = ({
                 currentUser={currentUser}
                 handleJobDelete={handleJobDelete}
                 handleProfileUser={handleProfileUser}
-                handleJobComplete={handleJobComplete}
               />
             ))}
             </Stack>
@@ -91,6 +90,7 @@ const MyJob = ({
                 key={job.id}
                 job={job}
                 currentUser={currentUser}
+                handleJobComplete={handleJobComplete}
                 handleJobDelete={handleJobDelete}
                 handleProfileUser={handleProfileUser}
               />

@@ -16,7 +16,7 @@ class JobSchema(ma.SQLAlchemySchema):
     
     reviews = fields.Nested("ReviewSchema", only=("id", 'content', "url"))
     user = fields.Nested("UserSchema", only=("id", "email", 'name', 'bio', 'profile_pic_url', "url"))
-    hires = fields.Nested('HireSchema', only=('id', 'job_seeker_id', 'url'))
+    hires = fields.Nested('HireSchema', only=('id', 'job_seeker_id', 'user','url'))
     url = ma.Hyperlinks(
         {
             "self": ma.URLFor(

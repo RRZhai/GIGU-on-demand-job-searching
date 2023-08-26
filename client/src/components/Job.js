@@ -24,12 +24,16 @@ const Job = ({
 }) => {
   const [readMore, setReadMore] = useState(false);
   const [addReview, setAddReview] = useState(false);
+  const [viewApplicant, setViewApplicant] = useState(false);
 
   const handleReadMore = () => {
     setReadMore((current) => !current);
   };
   const handleAddReview = () => {
     setAddReview((current) => !current);
+  };
+  const handleViewApplicant = () => {
+    setViewApplicant((current) => !current);
   };
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -59,7 +63,7 @@ const Job = ({
             {convertDate(job.date)}
           </Typography>
         </Stack>
-        <Stack direction="row" sx={{ display:'flex', alignItems:'center'}}>
+        <Stack direction="row" sx={{ display: "flex", alignItems: "center" }}>
           <Box>
             <Typography variant="h5" component="div">
               {job.job_type}
@@ -68,10 +72,7 @@ const Job = ({
               {job.city}, {job.state}
             </Typography>
           </Box>
-          <Box
-            ml="auto"
-            sx={{ display: "flex", alignItems: "center" }}
-          >
+          <Box ml="auto" sx={{ display: "flex", alignItems: "center" }}>
             <IconButton
               onClick={(e) => handleProfileUser(job.user)}
               component={Link}
@@ -109,9 +110,10 @@ const Job = ({
         )}
         <Button
           onClick={(e) => {
-            if (addReview) {
+            if (addReview || viewApplicant) {
               handleReadMore();
               handleAddReview();
+              handleViewApplicant();
             } else {
               handleReadMore();
             }
@@ -122,6 +124,20 @@ const Job = ({
         </Button>
         {job?.employee_id === currentUser?.id && job.status !== "completed" ? (
           <>
+            <Button
+              onClick={(e) => {
+                if (readMore || addReview) {
+                  handleReadMore();
+                  handleAddReview();
+                  handleViewApplicant();
+                } else {
+                  handleViewApplicant();
+                }
+              }}
+              size="small"
+            >
+              View Applicant
+            </Button>
             <Button
               variant="contained"
               onClick={(e) => handleJobDelete(job)}
@@ -135,7 +151,7 @@ const Job = ({
                 onClick={(e) => handleJobComplete(job)}
                 size="small"
               >
-                complete
+                Complete
               </Button>
             ) : (
               <Button disabled>complete</Button>
@@ -145,9 +161,10 @@ const Job = ({
         {job?.status === "completed" && job?.employee_id === currentUser.id ? (
           <Button
             onClick={(e) => {
-              if (readMore) {
+              if (readMore || viewApplicant) {
                 handleReadMore();
                 handleAddReview();
+                handleViewApplicant();
               } else {
                 handleAddReview();
               }
@@ -161,9 +178,10 @@ const Job = ({
         job?.hires?.job_seeker_id === currentUser.id ? (
           <Button
             onClick={(e) => {
-              if (readMore) {
+              if (readMore || viewApplicant) {
                 handleReadMore();
                 handleAddReview();
+                handleViewApplicant();
               } else {
                 handleAddReview();
               }
@@ -180,8 +198,6 @@ const Job = ({
             {job.description}
           </Typography>
         ) : null}
-      </CardContent>
-      <CardContent>
         {addReview ? (
           <ReviewForm
             job={job}
@@ -189,6 +205,23 @@ const Job = ({
             userRole={userRole}
             handleProfileUser={handleProfileUser}
           />
+        ) : null}
+        {viewApplicant ? (
+          <IconButton
+            onClick={(e) => handleProfileUser(job.hires.user)}
+            component={Link}
+            to="/profile/:name"
+          >
+            <Stack direction="row" spacing={2}>
+              <Avatar
+                alt={job.hires?.user.name}
+                src={job.hires?.user.profile_pic_url}
+              />
+              <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                {job.hires?.user.name}
+              </Typography>
+            </Stack>
+          </IconButton>
         ) : null}
       </CardContent>
     </Card>
