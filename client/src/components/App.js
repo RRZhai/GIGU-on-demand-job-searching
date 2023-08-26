@@ -229,7 +229,7 @@ const App = () => {
           <Route
             path="/signup"
             element={
-              <SignupForm theme={theme} updateCurrentUser={updateCurrentUser} />
+              <SignupForm theme={theme} handleCurrentUser={handleCurrentUser} />
             }
           />
           <Route

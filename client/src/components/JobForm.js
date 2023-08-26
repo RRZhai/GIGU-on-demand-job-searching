@@ -59,8 +59,6 @@ const JobForm = ({ handleSubmitJob, currentUser, userRole }) => {
         .then((res) => {
           if (res.ok) {
             res.json().then((data) => {
-              console.log(currentUser);
-              debugger;
               handleSubmitJob(data);
               navigate("/jobs");
             });
@@ -197,7 +195,7 @@ const JobForm = ({ handleSubmitJob, currentUser, userRole }) => {
               value={formik.values.date}
               onChange={(date) => formik.setFieldValue("date", date)}
             />
-            {formik.errors.end_time ? (
+            {formik.errors.date ? (
               <Alert severity="error">{formik.errors.date}</Alert>
             ) : null}
             <TimeField

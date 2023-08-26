@@ -24,7 +24,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import Error from "./Error";
 
-const SignUpForm = ({ currentUser, updateCurrentUser }) => {
+const SignUpForm = ({ currentUser, handleCurrentUser }) => {
   const { dispatch : userDispatch } = useContext(UserContext)
 
   const navigate = useNavigate();
@@ -68,7 +68,7 @@ const SignUpForm = ({ currentUser, updateCurrentUser }) => {
           if (resp.ok) {
             resp.json().then((data) => {
               userDispatch({type: "fetch", payload: data})
-              updateCurrentUser(data.user);
+              handleCurrentUser(data?.user);
               navigate("/");
             });
           } else {
