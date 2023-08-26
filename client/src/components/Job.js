@@ -1,5 +1,5 @@
 import * as React from "react";
-import Stack from "@mui/material/Stack";
+import { Stack, Box } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -51,41 +51,39 @@ const Job = ({
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
-        <Stack direction="row" spacing={20}>
-          <Stack direction="row" spacing={2}>
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
-            >
-              Job of the Day
-            </Typography>
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
-            >
-              {convertDate(job.date)}
-            </Typography>
-          </Stack>
-          <IconButton
-            onClick={(e) => handleProfileUser(job.user)}
-            component={Link}
-            to="/profile/:name"
-            sx={{ p: 0 }}
-          >
-            <Avatar alt={job.user?.name} src={job.user?.profile_pic_url} />
-          </IconButton>
+        <Stack direction="row" spacing={2}>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            Job of the Day
+          </Typography>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            {convertDate(job.date)}
+          </Typography>
         </Stack>
-        <Typography variant="h5" component="div">
-          {job.job_type}
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {job.city}, {job.state}
-        </Typography>
+        <Stack direction="row" >
+          <Box>
+            <Typography variant="h5" component="div">
+              {job.job_type}
+            </Typography>
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              {job.city}, {job.state}
+            </Typography>
+          </Box>
+          <Box
+            ml="auto"
+            sx={{ display: "flex", alignItems: "right" }}
+          >
+            <IconButton
+              onClick={(e) => handleProfileUser(job.user)}
+              component={Link}
+              to="/profile/:name"
+            >
+              <Avatar alt={job.user?.name} src={job.user?.profile_pic_url} />
+            </IconButton>
+          </Box>
+        </Stack>
         <Stack
           direction={{ xs: "column", sm: "row" }}
-          spacing={{ xs: 1, sm: 2, md: 10 }}
+          spacing={{ xs: 1, sm: 2 }}
         >
           <Item>${job.pay_rate}/hr</Item>
           <Item>{convertTime(job.start_time)}</Item>

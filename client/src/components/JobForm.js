@@ -115,7 +115,7 @@ const JobForm = ({ handleSubmitJob, currentUser, userRole }) => {
         <Box
           component="form"
           sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
+            "& .MuiTextField-root": { m: 1, width: "50%", position: "center" },
           }}
           onSubmit={formik.handleSubmit}
         >
@@ -133,17 +133,19 @@ const JobForm = ({ handleSubmitJob, currentUser, userRole }) => {
               </MenuItem>
             ))}
           </TextField>
-          <TextField
-            fullWidth
-            required
-            name="description"
-            label="Description"
-            placeholder="Please describe the job"
-            onChange={formik.handleChange}
-          />
-          {formik.errors.description ? (
-            <Alert severity="error">{formik.errors.description}</Alert>
-          ) : null}
+          <Box>
+            <TextField
+              fullWidth
+              required
+              name="description"
+              label="Description"
+              placeholder="Please describe the job"
+              onChange={formik.handleChange}
+            />
+            {formik.errors.description ? (
+              <Alert severity="error" sx={{width:'50%'}}>{formik.errors.description}</Alert>
+            ) : null}
+          </Box>
           <TextField
             fullWidth
             required
@@ -153,7 +155,7 @@ const JobForm = ({ handleSubmitJob, currentUser, userRole }) => {
             onChange={formik.handleChange}
           />
           {formik.errors.pay_rate ? (
-            <Alert severity="error">{formik.errors.pay_rate}</Alert>
+            <Alert severity="error" sx={{width:'50%'}}>{formik.errors.pay_rate}</Alert>
           ) : null}
           <TextField
             fullWidth
@@ -164,7 +166,7 @@ const JobForm = ({ handleSubmitJob, currentUser, userRole }) => {
             onChange={formik.handleChange}
           />
           {formik.errors.address ? (
-            <Alert severity="error">{formik.errors.address}</Alert>
+            <Alert severity="error" sx={{width:'50%'}}>{formik.errors.address}</Alert>
           ) : null}
           <TextField
             fullWidth
@@ -175,7 +177,7 @@ const JobForm = ({ handleSubmitJob, currentUser, userRole }) => {
             onChange={formik.handleChange}
           />
           {formik.errors.city ? (
-            <Alert severity="error">{formik.errors.city}</Alert>
+            <Alert severity="error" sx={{width:'50%'}}>{formik.errors.city}</Alert>
           ) : null}
           <TextField
             fullWidth
@@ -186,7 +188,7 @@ const JobForm = ({ handleSubmitJob, currentUser, userRole }) => {
             onChange={formik.handleChange}
           />
           {formik.errors.state ? (
-            <Alert severity="error">{formik.errors.state}</Alert>
+            <Alert severity="error" sx={{width:'50%'}}>{formik.errors.state}</Alert>
           ) : null}
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
@@ -196,7 +198,7 @@ const JobForm = ({ handleSubmitJob, currentUser, userRole }) => {
               onChange={(date) => formik.setFieldValue("date", date)}
             />
             {formik.errors.date ? (
-              <Alert severity="error">{formik.errors.date}</Alert>
+              <Alert severity="error" sx={{width:'50%'}}>{formik.errors.date}</Alert>
             ) : null}
             <TimeField
               fullWidth
@@ -206,7 +208,7 @@ const JobForm = ({ handleSubmitJob, currentUser, userRole }) => {
               format="HH:mm"
             />
             {formik.errors.start_time ? (
-              <Alert severity="error">{formik.errors.start_time}</Alert>
+              <Alert severity="error" sx={{width:'50%'}}>{formik.errors.start_time}</Alert>
             ) : null}
             <TimeField
               fullWidth
@@ -216,10 +218,10 @@ const JobForm = ({ handleSubmitJob, currentUser, userRole }) => {
               format="HH:mm"
             />
             {formik.errors.end_time ? (
-              <Alert severity="error">{formik.errors.end_time}</Alert>
+              <Alert severity="error" sx={{width:'50%'}}>{formik.errors.end_time}</Alert>
             ) : null}
           </LocalizationProvider>
-          {error ? <Error message={error} /> : null}
+          {error ? <Error message={error} sx={{width:'50%'}}/> : null}
           <Button
             type="submit"
             fullWidth
