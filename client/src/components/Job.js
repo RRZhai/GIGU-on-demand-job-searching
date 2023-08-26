@@ -49,7 +49,7 @@ const Job = ({
   };
 
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ minWidth: 300, maxWidth: 800 }}>
       <CardContent>
         <Stack direction="row" spacing={2}>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -59,7 +59,7 @@ const Job = ({
             {convertDate(job.date)}
           </Typography>
         </Stack>
-        <Stack direction="row" >
+        <Stack direction="row" sx={{ display:'flex', alignItems:'center'}}>
           <Box>
             <Typography variant="h5" component="div">
               {job.job_type}
@@ -70,7 +70,7 @@ const Job = ({
           </Box>
           <Box
             ml="auto"
-            sx={{ display: "flex", alignItems: "right" }}
+            sx={{ display: "flex", alignItems: "center" }}
           >
             <IconButton
               onClick={(e) => handleProfileUser(job.user)}

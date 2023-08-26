@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Typography, Container, Grid } from "@mui/material";
+import { Typography, Container, Grid, Stack } from "@mui/material";
 import Job from "./Job";
 
 const MyJob = ({
@@ -56,8 +56,8 @@ const MyJob = ({
   } else {
     return (
       <Container>
-        <Grid container>
-          <div className="image-card">
+        <Stack direction="row" spacing={2}>
+          <div className="image-card" >
             <Typography variant="h5" component="div">
               My Work
             </Typography>
@@ -86,7 +86,7 @@ const MyJob = ({
               />
             ))}
           </div>
-        </Grid>
+        </Stack>
       </Container>
     );
   }
