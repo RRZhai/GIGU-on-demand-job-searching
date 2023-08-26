@@ -110,9 +110,11 @@ const Job = ({
         )}
         <Button
           onClick={(e) => {
-            if (addReview || viewApplicant) {
+            if (addReview) {
               handleReadMore();
               handleAddReview();
+            } else if (viewApplicant) {
+              handleReadMore();
               handleViewApplicant();
             } else {
               handleReadMore();
@@ -122,12 +124,14 @@ const Job = ({
         >
           Learn More
         </Button>
-        {job?.employee_id === currentUser?.id && job.status !== "completed" ? (
+        {job?.employee_id === currentUser?.id ? (
           <>
             <Button
               onClick={(e) => {
-                if (readMore || addReview) {
+                if (readMore) {
                   handleReadMore();
+                  handleViewApplicant();
+                } else if (addReview) {
                   handleAddReview();
                   handleViewApplicant();
                 } else {
@@ -138,14 +142,17 @@ const Job = ({
             >
               View Applicant
             </Button>
-            <Button
-              variant="contained"
-              onClick={(e) => handleJobDelete(job)}
-              size="small"
-            >
-              Cancel
-            </Button>
-            {job.hires ? (
+            {!job?.status === "completed" ? (
+              <Button
+                variant="contained"
+                onClick={(e) => handleJobDelete(job)}
+                size="small"
+              >
+                Cancel
+              </Button>
+            ) : null}
+            {!job.hires ? <Button disabled>complete</Button> : null}
+            {job.hires && job?.status === "pending" ? (
               <Button
                 variant="contained"
                 onClick={(e) => handleJobComplete(job)}
@@ -153,26 +160,26 @@ const Job = ({
               >
                 Complete
               </Button>
-            ) : (
-              <Button disabled>complete</Button>
-            )}
+            ) : null}
+            {job?.status === "completed" ? (
+              <Button
+                onClick={(e) => {
+                  if (readMore) {
+                    handleReadMore();
+                    handleAddReview();
+                  } else if (viewApplicant) {
+                    handleViewApplicant();
+                    handleAddReview();
+                  } else {
+                    handleAddReview();
+                  }
+                }}
+                size="small"
+              >
+                add review
+              </Button>
+            ) : null}
           </>
-        ) : null}
-        {job?.status === "completed" && job?.employee_id === currentUser.id ? (
-          <Button
-            onClick={(e) => {
-              if (readMore || viewApplicant) {
-                handleReadMore();
-                handleAddReview();
-                handleViewApplicant();
-              } else {
-                handleAddReview();
-              }
-            }}
-            size="small"
-          >
-            add review
-          </Button>
         ) : null}
         {job?.status === "completed" &&
         job?.hires?.job_seeker_id === currentUser.id ? (
