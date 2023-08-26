@@ -11,13 +11,16 @@ const MyJob = ({
   pendingJobs,
   handleJobComplete,
 }) => {
-  const relatedJobsAsEmployee = jobs?.filter(
+  const relatedJobsAsEmployer = jobs?.filter(
     (job) => job.employee_id === currentUser?.id
   );
 
   const relatedJobsAsJobseeker = jobs?.filter(
     (job) => job.hires?.job_seeker_id === currentUser?.id
   );
+
+  console.log("relatedJobsAsEmployer", relatedJobsAsEmployer);
+  console.log("relatedJobsAsJobseeker", relatedJobsAsJobseeker);
   if (userRole === "employer") {
     return (
       <Container>
@@ -25,7 +28,7 @@ const MyJob = ({
           My Hire
         </Typography>
         <Stack spacing={2}>
-        {relatedJobsAsEmployee.map((job) => (
+        {relatedJobsAsEmployer.map((job) => (
           <Job
             key={job.id}
             job={job}
@@ -66,7 +69,7 @@ const MyJob = ({
               My Work
             </Typography>
             <Stack spacing={2}>
-            {relatedJobsAsEmployee?.map((job) => (
+            {relatedJobsAsJobseeker?.map((job) => (
               <Job
                 key={job.id}
                 job={job}
@@ -83,7 +86,7 @@ const MyJob = ({
               My Hire
             </Typography>
             <Stack spacing={2}>
-            {relatedJobsAsJobseeker?.map((job) => (
+            {relatedJobsAsEmployer?.map((job) => (
               <Job
                 key={job.id}
                 job={job}
