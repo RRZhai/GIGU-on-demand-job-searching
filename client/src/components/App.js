@@ -50,7 +50,7 @@ const App = () => {
 
   useEffect(() => {
     (async () => {
-      const res = await fetch("/me");
+      const res = await fetch("http://localhost:5555/me");
       if (res.ok) {
         const data = await res.json();
         userDispatch({ type: "fetch", payload: data.user });

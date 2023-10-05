@@ -78,7 +78,7 @@ function HeaderBar({
             onClick={(e) => handleSetRole(null)}
           >
             <img
-              src="GIGU-removebg-preview.png"
+              src="gigu_orange.png"
               height={"50px"}
               style={{ padding: "10px" }}
             />
