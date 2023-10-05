@@ -6,7 +6,7 @@ const Home = ({ handleSetRole, currentUser }) => {
     <div className="grid">
       <div className="image-card">
         <div className="image-wrapper">
-          <img className="zoom" alt="jobseeker" src="Business_Contract.svg" />
+          <img className="zoom" alt="jobseeker" src="Entrepreneur_managing.svg" />
           <Link
             className="content"
             to={currentUser ? "/jobs" : "/login"}
