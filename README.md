@@ -1,6 +1,6 @@
 # GIGU
 
-This on demand job search app is created using React frontend and Python with Flask backend. The app is deployed on Render and can be accessed at [GIGU](https://gigu-flatiron-version-deploy.onrender.com)
+This on demand job search app is created using React frontend and Python with Flask backend. The app is deployed on Render and can be accessed at [GIGU](https://gigu-flatiron-version-deploy.onrender.com) 
 
 Please see the instructions below to run the app locally. You can also visit this README.md file for a walkthrough of the app.
 
