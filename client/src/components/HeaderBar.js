@@ -107,7 +107,6 @@ function HeaderBar({
                 Add New Job
               </Button>
             ) : null}
-            {currentUser ? (
               <Button
                 noWrap
                 sx={{ flexGrow: 1 }}
@@ -119,18 +118,6 @@ function HeaderBar({
               >
                 All Active Jobs
               </Button>
-            ) : (
-              <Button
-                noWrap
-                sx={{ flexGrow: 1 }}
-                variant="button"
-                color="text.primary"
-                component={Link}
-                to="/login"
-              >
-                All Active Jobs
-              </Button>
-            )}
           </Box>
           <Box
             style={{ padding: "10px" }}
