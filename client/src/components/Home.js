@@ -5,58 +5,69 @@ const Home = ({ handleSetRole, currentUser }) => {
   return (
     <div className="grid">
       <div className="image-card">
-      {currentUser ? (
-            <div className="image-wrapper">
-              <img className='zoom' src="Entrepreneur_managing.svg" />
-              <Link
-                className="content"
-                to={"/jobs"}
-                onClick={(e) => handleSetRole(e.target.name)}
-                name="jobseeker"
-              >
+        {currentUser ? (
+          <div className="image-wrapper">
+            <img className="zoom" src="Entrepreneur_managing.svg" />
+            <Link
+              className="content"
+              to={"/login"}
+              color="inherit"
+              onClick={(e) => handleSetRole(e.target.name)}
+              name="jobseeker"
+            >
+              <Button size="small" variant="contained">
                 Looking for a job ...
-              </Link>
-            </div>
-          ) : (
-            <div className="image-wrapper">
-              <img className='zoom' src="Entrepreneur_managing.svg" />
-              <Link
-                className="content"
-                to={"/login"}
-                onClick={(e) => handleSetRole(e.target.name)}
-                name="jobseeker"
-              >
+              </Button>
+            </Link>
+          </div>
+        ) : (
+          <div className="image-wrapper">
+            <img className="zoom" src="Entrepreneur_managing.svg" />
+            <Link
+              className="content"
+              component={Link}
+              to={"/login"}
+              color="inherit"
+            >
+              <Button size="small" variant="contained">
                 Looking for a job ...
-              </Link>
-            </div>
-          )}
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
       <div className="image-card">
-      {currentUser ? (
-            <div className="image-wrapper">
-              <img className='zoom' src="Business_Contract.svg" />
-              <Link
-                className="content"
-                to={"/newjob"}
-                onClick={(e) => handleSetRole(e.target.name)}
-                name="employee"
-              >
+        {currentUser ? (
+          <div className="image-wrapper">
+            <img className="zoom" src="Business_Contract.svg" />
+            <Link
+              className="content"
+              component={Link}
+              color="inherit"
+              to={"/newjob"}
+              onClick={(e) => handleSetRole(e.target.name)}
+              name="employee"
+            >
+              <Button size="small" variant="contained">
                 Looking for a helper ...
-              </Link>
-            </div>
-          ) : (
-            <div className="image-wrapper">
-              <img className='zoom' src="Business_Contract.svg" />
-              <Link
-                className="content"
-                to={"/login"}
-                onClick={(e) => handleSetRole(e.target.name)}
-                name="employee"
-              >
+              </Button>
+            </Link>
+          </div>
+        ) : (
+          <div className="image-wrapper">
+            <img className="zoom" src="Business_Contract.svg" />
+            <Link
+              className="content"
+              component={Link}
+              to={"/login"}
+              color="inherit"
+            >
+              <Button size="small" variant="contained">
                 Looking for a helper ...
-              </Link>
-            </div>
-          )}
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

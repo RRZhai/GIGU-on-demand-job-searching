@@ -182,7 +182,7 @@ const Job = ({
           </>
         ) : null}
         {job?.status === "completed" &&
-        job?.hires?.job_seeker_id === currentUser.id ? (
+        job?.hires?.job_seeker_id === currentUser?.id ? (
           <Button
             onClick={(e) => {
               if (readMore || viewApplicant) {

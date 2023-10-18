@@ -75,7 +75,8 @@ function HeaderBar({
             sx={{ flexGrow: 2 }}
             component={Link}
             to="/"
-            onClick={(e) => handleSetRole(null)}
+            onClick={(e) => handleSetRole(e.target.name)}
+            name="employer"
           >
             <img
               src="GIGULogo.png"
@@ -95,7 +96,7 @@ function HeaderBar({
             sx={{ border: "10px" }}
           />
           <Box sx={{ p: 2, border: "1px" }}>
-            {currentUser && userRole === "employer" ? (
+            {userRole === "employer" && currentUser ? (
               <Button
                 noWrap
                 sx={{ flexGrow: 1 }}
