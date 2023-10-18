@@ -10,7 +10,7 @@ const Home = ({ handleSetRole, currentUser }) => {
             <img className="zoom" src="Entrepreneur_managing.svg" />
             <Link
               className="content"
-              to={"/login"}
+              to={"/jobs"}
               color="inherit"
               onClick={(e) => handleSetRole(e.target.name)}
               name="jobseeker"
