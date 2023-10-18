@@ -136,7 +136,6 @@ const App = () => {
     setUserRole(role);
     setFilterJobs(jobs?.filter((job) => job.status === "active"));
   };
-  console.log(userRole)
 
   const handleJobsByLocation = (type) => {
     setFilterJobs(
