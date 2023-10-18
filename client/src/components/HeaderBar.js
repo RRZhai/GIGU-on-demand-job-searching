@@ -35,7 +35,7 @@ function HeaderBar({
   const label = { inputProps: { "aria-label": "Switch demo" } };
 
   const logout = () => {
-    fetch("/logout", {
+    fetch("http://localhost:5555/logout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
     })
