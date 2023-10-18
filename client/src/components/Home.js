@@ -10,7 +10,7 @@ const Home = ({ handleSetRole, currentUser }) => {
             <img className="zoom" src="Entrepreneur_managing.svg" />
             <Link
               className="content"
-              to={"/jobs"}
+              to="/jobs"
               color="inherit"
               onClick={(e) => handleSetRole(e.target.name)}
               name="jobseeker"
@@ -26,7 +26,7 @@ const Home = ({ handleSetRole, currentUser }) => {
             <Link
               className="content"
               component={Link}
-              to={"/login"}
+              to="/login"
               color="inherit"
             >
               <Button size="small" variant="contained">
@@ -42,11 +42,10 @@ const Home = ({ handleSetRole, currentUser }) => {
             <img className="zoom" src="Business_Contract.svg" />
             <Link
               className="content"
-              component={Link}
               color="inherit"
-              to={"/newjob"}
+              to="/newjob"
               onClick={(e) => handleSetRole(e.target.name)}
-              name="employee"
+              name="employer"
             >
               <Button size="small" variant="contained">
                 Looking for a helper ...
@@ -59,7 +58,7 @@ const Home = ({ handleSetRole, currentUser }) => {
             <Link
               className="content"
               component={Link}
-              to={"/login"}
+              to="/login"
               color="inherit"
             >
               <Button size="small" variant="contained">
