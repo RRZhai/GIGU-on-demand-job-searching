@@ -132,7 +132,7 @@ function HeaderBar({
                     <Switch
                       {...label}
                       defaultChecked
-                      color="warning"
+                      color="primary"
                       to={"/jobs"}
                       onClick={(e) => handleSetRole(e.target.name)}
                       name="employer"
@@ -142,7 +142,7 @@ function HeaderBar({
                   <Tooltip title={userRole}>
                     <Switch
                       {...label}
-                      color="warning"
+                      color="primary"
                       to={"/jobs"}
                       onClick={(e) => handleSetRole(e.target.name)}
                       name="jobseeker"
