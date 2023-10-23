@@ -177,7 +177,7 @@ const App = () => {
             if (res.ok) {
               res.json().then((data) => {
                 setApplyJob(data);
-                // jobDispatch({ type: "patch", payload: data });
+                jobDispatch({ type: "patch", payload: data });
                 setFilterJobs((current) =>
                   current.filter((item) => item.id !== job.id)
                 );
