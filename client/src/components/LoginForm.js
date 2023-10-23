@@ -61,8 +61,8 @@ const LoginForm = ({ currentUser, handleCurrentUser }) => {
         .then((resp) => {
           if (resp.ok) {
             resp.json().then((data) => {
-              userDispatch({ type: "fetch", payload: data });
-              handleCurrentUser(data);
+              userDispatch({ type: "fetch", payload: data.user});
+              handleCurrentUser(data.user);
               navigate("/");
             });
           } else {

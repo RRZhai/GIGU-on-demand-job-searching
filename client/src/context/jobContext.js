@@ -6,20 +6,14 @@ const initialState = [];
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "fetch":
-      return action.payload;
-    case "add":
-      return [action.payload, ...state];
-    case "patch":
-      return state.map((job) =>
-        job.id === action.payload.id ? action.payload : job
-      );
-    case "remove":
-      return state.filter((job) => job.id !== action.payload.id);
-    default:
-      return state;
+      case "fetch":
+          return action.payload
+      case "remove":
+          return initialState
+      default:
+          return state;
   }
-};
+}
 
 const JobProvider = ({ children }) => {
   const [jobs, dispatch] = useReducer(reducer, initialState);

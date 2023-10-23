@@ -26,7 +26,6 @@ class Login(Resource):
                     token = create_access_token(identity=user.id)
                     refresh_token = create_refresh_token(identity=user.id)
                     response = make_response({'user': user_schema.dump(user)}, 201)
-
                     set_access_cookies(response, token)
                     set_refresh_cookies(response, refresh_token)
 

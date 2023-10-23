@@ -54,7 +54,6 @@ const App = () => {
       if (res.ok) {
         const data = await res.json();
         userDispatch({ type: "fetch", payload: data.user });
-        console.log(data);
         setCurrentUser(data.user);
       }
     })();
@@ -247,27 +246,31 @@ const App = () => {
           <Route
             path="/myjobs"
             element={
-              <MyJob
+              currentUser ? (<MyJob
                 userRole={userRole}
-                jobs={filterJobs}
+                jobs={jobs}
                 currentUser={currentUser}
                 handleProfileUser={handleProfileUser}
                 handleJobDelete={handleJobDelete}
                 theme={theme}
                 pendingJob={applyJob}
                 handleJobComplete={handleJobComplete}
-              />
+              />) : <Error404 theme={theme} />
             }
           />
           <Route
             path="/newjob"
             element={
-              <JobForm
-                theme={theme}
-                currentUser={user}
-                handleSubmitJob={handleSubmitJob}
-                userRole={userRole}
-              />
+              currentUser && userRole === "employer" ? (
+                <JobForm
+                  theme={theme}
+                  currentUser={currentUser}
+                  handleSubmitJob={handleSubmitJob}
+                  userRole={userRole}
+                />
+              ) : (
+                <Error404 theme={theme} />
+              )
             }
           />
           <Route
