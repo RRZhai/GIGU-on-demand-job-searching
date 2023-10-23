@@ -53,7 +53,7 @@ const Job = ({
   };
 
   return (
-    <Card sx={{ minWidth: 300, maxWidth: 800 }}>
+    <Card sx={{ minWidth: 300 }}>
       <CardContent>
         <Stack direction="row" spacing={2}>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -84,7 +84,7 @@ const Job = ({
         </Stack>
         <Stack
           direction={{ xs: "column", sm: "row" }}
-          spacing={{ xs: 1, sm: 2 }}
+          spacing={{ xs: 1, sm: 4 }}
         >
           <Item>${job.pay_rate}/hr</Item>
           <Item>{convertTime(job.start_time)}</Item>
