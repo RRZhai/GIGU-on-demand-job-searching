@@ -35,7 +35,7 @@ function HeaderBar({
   const label = { inputProps: { "aria-label": "Switch demo" } };
 
   const logout = () => {
-    fetch("/logout", {
+    fetch("http://localhost:5555/logout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
     })
@@ -75,10 +75,11 @@ function HeaderBar({
             sx={{ flexGrow: 2 }}
             component={Link}
             to="/"
-            onClick={(e) => handleSetRole(null)}
+            onClick={(e) => handleSetRole(e.target.name)}
+            name="employer"
           >
             <img
-              src="GIGU-removebg-preview.png"
+              src="GIGULogo.png"
               height={"50px"}
               style={{ padding: "10px" }}
             />
@@ -95,7 +96,7 @@ function HeaderBar({
             sx={{ border: "10px" }}
           />
           <Box sx={{ p: 2, border: "1px" }}>
-            {currentUser && userRole === "employer" ? (
+            {userRole === "employer" && currentUser ? (
               <Button
                 noWrap
                 sx={{ flexGrow: 1 }}
@@ -107,7 +108,6 @@ function HeaderBar({
                 Add New Job
               </Button>
             ) : null}
-            {currentUser ? (
               <Button
                 noWrap
                 sx={{ flexGrow: 1 }}
@@ -119,18 +119,6 @@ function HeaderBar({
               >
                 All Active Jobs
               </Button>
-            ) : (
-              <Button
-                noWrap
-                sx={{ flexGrow: 1 }}
-                variant="button"
-                color="text.primary"
-                component={Link}
-                to="/login"
-              >
-                All Active Jobs
-              </Button>
-            )}
           </Box>
           <Box
             style={{ padding: "10px" }}
@@ -144,7 +132,7 @@ function HeaderBar({
                     <Switch
                       {...label}
                       defaultChecked
-                      color="warning"
+                      color="primary"
                       to={"/jobs"}
                       onClick={(e) => handleSetRole(e.target.name)}
                       name="employer"
@@ -154,7 +142,7 @@ function HeaderBar({
                   <Tooltip title={userRole}>
                     <Switch
                       {...label}
-                      color="warning"
+                      color="primary"
                       to={"/jobs"}
                       onClick={(e) => handleSetRole(e.target.name)}
                       name="jobseeker"

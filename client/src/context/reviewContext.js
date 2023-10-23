@@ -24,7 +24,7 @@ const ReviewProvider = ({ children }) => {
     const [reviews, dispatch] = useReducer(reducer, initialState)
 
     useEffect(() => {
-        fetch('/reviews')
+        fetch('http://localhost:5555/reviews')
         .then(resp => {
             resp.json().then(data => {
                 if (resp.ok){

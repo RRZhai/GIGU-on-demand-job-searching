@@ -4,10 +4,11 @@ from marshmallow import ValidationError
 
 from functools import wraps
 
-def login_required(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        if 'user_id' not in session:
-            abort(401, 'Unauthorized')
-        return func(*args, **kwargs)
-    return wrapper
+# def login_required(func):
+#     @wraps(func)
+#     def wrapper(*args, **kwargs):
+#         import ipdb; ipdb.set_trace()
+#         if 'user_id' not in session:
+#             abort(401, 'Unauthorized')
+#         return func(*args, **kwargs)
+#     return wrapper

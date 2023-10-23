@@ -24,7 +24,7 @@ const HireProvider = ({ children }) => {
     const [hires, dispatch] = useReducer(reducer, initialState)
 
     useEffect(() => {
-        fetch('/hires')
+        fetch('http://localhost:5555/hires')
         .then(resp => {
             resp.json().then(data => {
                 if (resp.ok){

@@ -13,14 +13,14 @@ import MyJob from "./MyJob";
 import { JobContext } from "../context/jobContext";
 import { UserContext } from "../context/userContext";
 import { createTheme } from "@mui/material/styles";
-import { orange, green } from "@mui/material/colors";
+import { orange, blue } from "@mui/material/colors";
 import { ThemeProvider } from "@emotion/react";
 
 const App = () => {
   const { jobs, dispatch: jobDispatch } = useContext(JobContext);
   const { user, dispatch: userDispatch } = useContext(UserContext);
 
-  const [userRole, setUserRole] = useState("");
+  const [userRole, setUserRole] = useState("employer");
   const [currentUser, setCurrentUser] = useState(null);
   const [filterJobs, setFilterJobs] = useState(jobs);
   const [applyJob, setApplyJob] = useState(null);
@@ -37,30 +37,31 @@ const App = () => {
           },
         })
       );
-    } else if (userRole === "employer") {
+    } else {
       setTheme(
         createTheme({
           palette: {
-            primary: green,
+            primary: blue,
           },
         })
       );
-    } else setTheme(createTheme());
+    }
   }, [userRole]);
 
   useEffect(() => {
     (async () => {
-      const res = await fetch("/me");
+      const res = await fetch("http://localhost:5555/me");
       if (res.ok) {
         const data = await res.json();
         userDispatch({ type: "fetch", payload: data.user });
+        console.log(data);
         setCurrentUser(data.user);
       }
     })();
   }, []);
 
   useEffect(() => {
-    fetch("/jobs")
+    fetch("http://localhost:5555/jobs")
       .then((resp) => {
         resp.json().then((data) => {
           if (resp.ok) {
@@ -84,27 +85,27 @@ const App = () => {
 
   const handleCurrentUser = (user) => {
     setCurrentUser(user);
-  }
+  };
 
   const updateCurrentUser = (updateUser) => {
-    fetch(`/users/${currentUser.id}`, {
+    fetch(`http://localhost:5555/users/${currentUser.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updateUser),
     })
-    .then((res) => {
-      if (res.ok) {
-        res.json().then((data) => {
-          userDispatch({ type: "patch", payload: data });
-          setCurrentUser(data);
-        });
-      }
-    })
-    .catch((err) => console.error(err));
+      .then((res) => {
+        if (res.ok) {
+          res.json().then((data) => {
+            // userDispatch({ type: "patch", payload: data });
+            setCurrentUser(data);
+          });
+        }
+      })
+      .catch((err) => console.error(err));
   };
 
   const handleJobComplete = (job) => {
-    fetch(`/jobs/${job.id}`, {
+    fetch(`http://localhost:5555/jobs/${job.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: "completed" }),
@@ -120,7 +121,7 @@ const App = () => {
   };
 
   const handleJobDelete = (job) => {
-    fetch(`/jobs/${job.id}`, {
+    fetch(`http://localhost:5555/jobs/${job.id}`, {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {
@@ -161,14 +162,14 @@ const App = () => {
       job_seeker_id: currentUser?.id,
     };
     e.preventDefault();
-    fetch("/hires", {
+    fetch("http://localhost:5555/hires", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newHire),
     })
       .then((res) => res.json())
       .then((data) => {
-        fetch(`/jobs/${job.id}`, {
+        fetch(`http://localhost:5555/jobs/${job.id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ status: "pending", hire_id: data.id }),

@@ -21,54 +21,21 @@ const MyJob = ({
 
   // console.log("relatedJobsAsEmployer", relatedJobsAsEmployer);
   // console.log("relatedJobsAsJobseeker", relatedJobsAsJobseeker);
-  if (userRole === "employer") {
-    return (
-      <Container>
-        <Typography variant="h5" component="div">
-          My Hire
-        </Typography>
-        <Stack spacing={2}>
-        {relatedJobsAsEmployer.map((job) => (
-          <Job
-            key={job.id}
-            job={job}
-            currentUser={currentUser}
-            handleJobDelete={handleJobDelete}
-            handleJobComplete={handleJobComplete}
-            handleProfileUser={handleProfileUser}
-          />
-        ))}
-        </Stack>
-      </Container>
-    );
-  } else if (userRole === "jobseeker") {
-    return (
-      <Container>
-        <Stack spacing={2}>
-        <Typography variant="h5" component="div">
-          My Work
-        </Typography>
-        {relatedJobsAsJobseeker.map((job) => (
-          <Job
-            key={job.id}
-            job={job}
-            currentUser={currentUser}
-            handleJobDelete={handleJobDelete}
-            handleProfileUser={handleProfileUser}
-          />
-        ))}
-        </Stack>
-      </Container>
-    );
-  } else {
-    return (
-      <Container>
-        <Stack direction="row" spacing={2}>
-          <div className="image-card" >
-            <Typography variant="h5" component="div">
-              My Work
-            </Typography>
-            <Stack spacing={2}>
+
+  return (
+    <Container>
+      <Stack spacing={2}>
+        <div className="image-card">
+          <Typography
+            variant="h4"
+            component="div"
+            bgcolor="#ff9800
+"
+            align="center"
+          >
+            My Work
+          </Typography>
+          <Stack spacing={2}>
             {relatedJobsAsJobseeker?.map((job) => (
               <Job
                 key={job.id}
@@ -78,13 +45,18 @@ const MyJob = ({
                 handleProfileUser={handleProfileUser}
               />
             ))}
-            </Stack>
-          </div>
-          <div className="image-card">
-            <Typography variant="h5" component="div">
-              My Hire
-            </Typography>
-            <Stack spacing={2}>
+          </Stack>
+        </div>
+        <div className="image-card">
+          <Typography
+            variant="h4"
+            component="div"
+            bgcolor="#2196f3"
+            align="center"
+          >
+            My Hire
+          </Typography>
+          <Stack spacing={2}>
             {relatedJobsAsEmployer?.map((job) => (
               <Job
                 key={job.id}
@@ -95,12 +67,11 @@ const MyJob = ({
                 handleProfileUser={handleProfileUser}
               />
             ))}
-            </Stack>
-          </div>
-        </Stack>
-      </Container>
-    );
-  }
+          </Stack>
+        </div>
+      </Stack>
+    </Container>
+  );
 };
 
 export default MyJob;

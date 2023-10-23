@@ -10,6 +10,8 @@ const reducer = (state, action) => {
       return action.payload;
     case "remove":
       return initialState;
+    case "add":
+      return [action.payload, ...state];
     case "patch":
       return state.map((user) =>
         user.id === action.payload.id ? action.payload : user
@@ -21,16 +23,6 @@ const reducer = (state, action) => {
 
 const UserProvider = ({ children }) => {
   const [user, dispatch] = useReducer(reducer, initialState);
-
-  useEffect(() => {
-    (async () => {
-      const res = await fetch("/me");
-      if (res.ok) {
-        const data = await res.json();
-        dispatch({ type: "fetch", payload: data.user });
-      }
-    })();
-  }, []);
 
   return (
     <UserContext.Provider value={{ user, dispatch }}>

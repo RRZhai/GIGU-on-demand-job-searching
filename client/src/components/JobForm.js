@@ -51,7 +51,8 @@ const JobForm = ({ handleSubmitJob, currentUser, userRole }) => {
     },
     validationSchema: jobSchema,
     onSubmit: (values) => {
-      fetch("/jobs", {
+      console.log(currentUser)
+      fetch("http://localhost:5555/jobs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
@@ -59,6 +60,7 @@ const JobForm = ({ handleSubmitJob, currentUser, userRole }) => {
         .then((res) => {
           if (res.ok) {
             res.json().then((data) => {
+              console.log(data)
               handleSubmitJob(data);
               navigate("/jobs");
             });

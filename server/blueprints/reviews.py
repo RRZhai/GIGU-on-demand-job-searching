@@ -1,4 +1,4 @@
-from blueprints import session, request, Resource, Blueprint, make_response, g, abort, login_required 
+from blueprints import session, request, Resource, Blueprint, make_response, g, abort
 from blueprints.review_by_id import review_schema
 from models import db
 from models.review import Review
@@ -13,7 +13,7 @@ class Reviews(Resource):
         reviews = reviews_schema.dump(Review.query.order_by(Review.created_at.desc()).all())
         return make_response(reviews, 200)
     
-    @login_required
+    # @login_required
     def post(self):
         try:
             data = request.get_json()

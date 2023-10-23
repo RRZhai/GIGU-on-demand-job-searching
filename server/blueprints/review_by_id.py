@@ -2,7 +2,7 @@ from blueprints import Resource, Blueprint, make_response, g, abort
 from models import db
 from models.review import Review
 from schemas.review_schema import ReviewSchema
-from blueprints import login_required, request, session, Resource, Blueprint, make_response, g, abort
+from blueprints import request, session, Resource, Blueprint, make_response, g, abort
 from flask import Flask, jsonify
 review_schema = ReviewSchema()
 review_by_id_bp = Blueprint("review_by_id", __name__, 
@@ -14,7 +14,7 @@ class ReviewById(Resource):
         return make_response(review, 200)
     
 
-    @login_required
+    # @login_required
     def delete(self, id):
         try:
             review = db.session.get(Review, id)

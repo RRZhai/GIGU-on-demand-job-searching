@@ -53,7 +53,7 @@ const LoginForm = ({ currentUser, handleCurrentUser }) => {
     },
     validationSchema: userSchema,
     onSubmit: (values) => {
-      fetch("/login", {
+      fetch("http://localhost:5555/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
@@ -62,7 +62,7 @@ const LoginForm = ({ currentUser, handleCurrentUser }) => {
           if (resp.ok) {
             resp.json().then((data) => {
               userDispatch({ type: "fetch", payload: data });
-              handleCurrentUser(data?.user);
+              handleCurrentUser(data);
               navigate("/");
             });
           } else {
