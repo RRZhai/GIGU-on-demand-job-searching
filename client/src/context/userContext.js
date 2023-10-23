@@ -24,6 +24,16 @@ const reducer = (state, action) => {
 const UserProvider = ({ children }) => {
   const [user, dispatch] = useReducer(reducer, initialState);
 
+  useEffect(() => {
+    (async () => {
+      const res = await fetch("/me");
+      if (res.ok) {
+        const data = await res.json();
+        dispatch({ type: "fetch", payload: data.user });
+      }
+    })();
+  }, []);
+
   return (
     <UserContext.Provider value={{ user, dispatch }}>
       {children}

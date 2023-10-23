@@ -112,7 +112,7 @@ const App = () => {
     }).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
-          jobDispatch({ type: "patch", payload: data });
+          // jobDispatch({ type: "patch", payload: data });
           const filterPastJob = jobs.filter((item) => item.id !== data.id);
           setFilterJobs((current) => [current, ...filterPastJob]);
         });
