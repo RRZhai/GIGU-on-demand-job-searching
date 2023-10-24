@@ -213,22 +213,32 @@ const Job = ({
             handleProfileUser={handleProfileUser}
           />
         ) : null}
-        {viewApplicant && job.hires ? (
-          <IconButton
-            onClick={(e) => handleProfileUser(job.hires.user)}
-            component={Link}
-            to="/profile/:name"
-          >
-            <Stack direction="row" spacing={2}>
-              <Avatar
-                alt={job.hires?.user.name}
-                src={job.hires?.user.profile_pic_url}
-              />
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                {job.hires?.user.name}
-              </Typography>
-            </Stack>
-          </IconButton>
+        {viewApplicant ? (
+          job.hires ? (
+            <IconButton
+              onClick={(e) => handleProfileUser(job.hires.user)}
+              component={Link}
+              to="/profile/:name"
+            >
+              <Stack direction="row" spacing={2}>
+                <Avatar
+                  alt={job.hires?.user.name}
+                  src={job.hires?.user.profile_pic_url}
+                />
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                  {job.hires?.user.name}
+                </Typography>
+              </Stack>
+            </IconButton>
+          ) : (
+            <Typography
+              sx={{ fontSize: 14 }}
+              color="text.secondary"
+              gutterBottom
+            >
+              There is no applicant yet.
+            </Typography>
+          )
         ) : null}
       </CardContent>
     </Card>

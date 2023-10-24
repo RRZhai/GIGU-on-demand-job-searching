@@ -37,10 +37,10 @@ class UserSchema(ma.SQLAlchemySchema):
         required=True, validate=validate.URL(error="Invalid URL")
     )
     jobs = fields.Nested(
-        "JobSchema", only=("id", "job_type", "pay_rate", "status"), many=True
+        "JobSchema", only=("id", "job_type", "pay_rate", "status"), many=True, allow_none=True
     )
-    hires = fields.Nested("HireSchema", only=("id", "job_id"), many=True)
-    reviews = fields.Nested("ReviewSchema", only=("id", "rating", "job_id"), many=True)
+    hires = fields.Nested("HireSchema", only=("id", "job_id"), many=True, allow_none=True)
+    reviews = fields.Nested("ReviewSchema", only=("id", "rating", "job_id"), many=True, allow_none=True)
     url = ma.Hyperlinks(
         {
             "self": ma.URLFor("userbyid", values=dict(id="<id>")),
