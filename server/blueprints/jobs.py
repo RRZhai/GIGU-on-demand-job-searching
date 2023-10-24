@@ -1,5 +1,5 @@
 from blueprints import (
-    
+    login_required,
     session,
     request,
     Resource,
@@ -24,7 +24,7 @@ class Jobs(Resource):
         jobs = jobs_schema.dump(Job.query.order_by(Job.created_at.desc()).all())
         return make_response(jobs, 200)
 
-    # @login_required
+    @login_required
     def post(self):
         try:
             data = request.get_json()

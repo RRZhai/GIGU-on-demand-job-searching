@@ -1,4 +1,4 @@
-from blueprints import Resource, Blueprint, make_response, g, abort 
+from blueprints import login_required, Resource, Blueprint, make_response, g, abort 
 from models import db
 from models.hire import Hire
 from schemas.hire_schema import HireSchema
@@ -13,7 +13,7 @@ class HireById(Resource):
         hire = hire_schema.dump(db.session.get(Hire, id))
         return make_response(hire, 200)
 
-    # @login_required    
+    @login_required    
     def delete(self, id):
         try:
             hire = db.session.get(Hire, id)

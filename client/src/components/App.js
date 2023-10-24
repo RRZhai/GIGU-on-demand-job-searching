@@ -99,7 +99,7 @@ const App = () => {
       .then((res) => {
         if (res.ok) {
           res.json().then((data) => {
-            // userDispatch({ type: "patch", payload: data });
+            userDispatch({ type: "patch", payload: data });
             setCurrentUser(data);
           });
         }

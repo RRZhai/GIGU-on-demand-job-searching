@@ -1,4 +1,4 @@
-from blueprints import Resource, Blueprint, make_response, g, abort 
+from blueprints import login_required, Resource, Blueprint, make_response, g, abort 
 from models import db
 from models.review import Review
 from schemas.review_schema import ReviewSchema
@@ -14,7 +14,7 @@ class ReviewById(Resource):
         return make_response(review, 200)
     
 
-    # @login_required
+    @login_required
     def delete(self, id):
         try:
             review = db.session.get(Review, id)

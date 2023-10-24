@@ -1,4 +1,4 @@
-from blueprints import  session, request, Resource, Blueprint, make_response, g, abort 
+from blueprints import login_required, session, request, Resource, Blueprint, make_response, g, abort 
 from models import db
 from models.hire import Hire
 from models.user import User
@@ -13,7 +13,7 @@ class Hires(Resource):
         hires = hires_schema.dump(Hire.query.all())
         return make_response(hires, 200)
     
-    # @login_required
+    @login_required
     def post(self):
         try:
             data = request.get_json()

@@ -22,7 +22,6 @@ class Login(Resource):
             if user := User.query.filter(User.email == email).first():
                 if user.authenticate(password):
                     session['user_id'] = user.id
-                    # import ipdb; ipdb.set_trace()
                     token = create_access_token(identity=user.id)
                     refresh_token = create_refresh_token(identity=user.id)
                     response = make_response({'user': user_schema.dump(user)}, 201)
