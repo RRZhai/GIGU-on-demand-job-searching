@@ -60,15 +60,16 @@ const Profile = ({ profileUser, updateCurrentUser, currentUser }) => {
             border: "none",
             width: "100vw",
             position: "sticky",
+            justifyContent: 'space-around'
           },
         }}
         variant="permanent"
       >
-        <Box sx={{ display: "flex", width: "800px" }}>
+        <Box sx={{ display: "flex", flexDirection: "row", width: "800px", justifyContent: 'space-around'  }} >
           <Avatar
             alt={profileUser?.username}
             src={profileUser?.profile_pic_url}
-            sx={{ width: 100, height: 100 }}
+            sx={{ width: 100, height: 100, left: 10 }}
           />
           <Box
             sx={{

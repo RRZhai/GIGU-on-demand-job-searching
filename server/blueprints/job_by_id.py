@@ -29,7 +29,6 @@ class JobById(Resource):
             data = db.session.get(Job, id)
             job = job_schema.load(request.get_json(), instance=data, partial=True)
             db.session.add(job)
-            import ipdb; ipdb.set_trace()
             db.session.commit()
             return make_response(jsonify(job_schema.dump(job)), 200)    
         except Exception as e:

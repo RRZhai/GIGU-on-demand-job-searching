@@ -1,4 +1,4 @@
-from .__init__ import fields, validate, validates, ValidationError, ma, User
+from .__init__ import fields, validate, validates, ValidationError, ma
 
 from models.user import User
 import re
