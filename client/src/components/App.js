@@ -86,6 +86,10 @@ const App = () => {
     setCurrentUser(user);
   };
 
+  const hangleAllJobs = () => {
+    setFilterJobs(jobs);
+  }
+
   const updateCurrentUser = (updateUser) => {
     fetch(`http://localhost:5555/users/${currentUser.id}`, {
       method: "PATCH",
@@ -111,7 +115,7 @@ const App = () => {
     }).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
-          // jobDispatch({ type: "patch", payload: data });
+          jobDispatch({ type: "patch", payload: data });
           const filterPastJob = jobs.filter((item) => item.id !== data.id);
           setFilterJobs((current) => [current, ...filterPastJob]);
         });
@@ -146,12 +150,12 @@ const App = () => {
   const handleActiveJob = (active) => {
     if (active) {
       setFilterJobs(
-        jobs?.filter(
+        jobs.filter(
           (job) => job.status === "active" || job.status === "pending"
         )
       );
     } else {
-      setFilterJobs(jobs?.filter((job) => job.status === "completed"));
+      setFilterJobs(jobs.filter((job) => job.status === "completed"));
     }
   };
 
@@ -198,6 +202,7 @@ const App = () => {
         <HeaderBar
           currentUser={currentUser}
           userRole={userRole}
+          hangleAllJobs={hangleAllJobs}
           handleActiveJob={handleActiveJob}
           handleSetRole={handleSetRole}
           handleJobsByLocation={handleJobsByLocation}
@@ -248,7 +253,7 @@ const App = () => {
             element={
               currentUser ? (<MyJob
                 userRole={userRole}
-                jobs={jobs}
+                jobs={filterJobs}
                 currentUser={currentUser}
                 handleProfileUser={handleProfileUser}
                 handleJobDelete={handleJobDelete}
@@ -280,7 +285,7 @@ const App = () => {
                 theme={theme}
                 userRole={userRole}
                 currentUser={currentUser}
-                jobs={filterJobs}
+                jobs={jobs.filter((job) => !job.hire_id)}
                 handleJobDelete={handleJobDelete}
                 handleSubmitJob={handleSubmitJob}
                 handleJobsByLocation={handleJobsByLocation}

@@ -142,7 +142,7 @@ const Job = ({
             >
               View Applicant
             </Button>
-            {!job?.status === "completed" ? (
+            {job?.status !== "completed" ? (
               <Button
                 variant="contained"
                 onClick={(e) => handleJobDelete(job)}
@@ -213,7 +213,7 @@ const Job = ({
             handleProfileUser={handleProfileUser}
           />
         ) : null}
-        {viewApplicant ? (
+        {viewApplicant && job.hires ? (
           <IconButton
             onClick={(e) => handleProfileUser(job.hires.user)}
             component={Link}

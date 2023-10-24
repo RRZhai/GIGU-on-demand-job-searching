@@ -108,7 +108,6 @@ const JobForm = ({ handleSubmitJob, currentUser, userRole }) => {
       label: "Other",
     },
   ];
-  console.log(currentUser);
 
   return (
     <Container>

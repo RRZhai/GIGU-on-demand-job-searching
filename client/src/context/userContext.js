@@ -10,8 +10,8 @@ const reducer = (state, action) => {
       return action.payload;
     case "remove":
       return initialState;
-    case "add":
-      return [action.payload, ...state];
+    case 'add':
+      return [...state, action.payload]
     case "patch":
       return state.map((user) =>
         user.id === action.payload.id ? action.payload : user

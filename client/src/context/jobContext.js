@@ -10,6 +10,8 @@ const reducer = (state, action) => {
           return action.payload
       case "remove":
           return initialState
+      case 'add':
+          return [...state, action.payload]
       default:
           return state;
   }

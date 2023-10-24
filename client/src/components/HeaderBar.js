@@ -16,6 +16,7 @@ import { useContext } from "react";
 function HeaderBar({
   currentUser,
   handleCurrentUser,
+  hangleAllJobs,
   userRole,
   handleActiveJob,
   handleSetRole,
@@ -73,9 +74,8 @@ function HeaderBar({
             color="inherit"
             noWrap
             sx={{ flexGrow: 2 }}
-            component={Link}
             to="/"
-            onClick={(e) => handleSetRole(e.target.name)}
+            onClick={hangleAllJobs}
             name="employer"
           >
             <img
@@ -115,7 +115,6 @@ function HeaderBar({
                 color="text.primary"
                 component={Link}
                 to="/jobs"
-                onClick={(e) => handleActiveJob(isActive)}
               >
                 All Active Jobs
               </Button>
