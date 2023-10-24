@@ -8,31 +8,32 @@ const Home = ({ handleSetRole, currentUser }) => {
         {currentUser ? (
           <div className="image-wrapper">
             <img className="zoom" src="Entrepreneur_managing.svg" />
-            <Link
-              className="content"
-              to="/jobs"
-              color="inherit"
-              onClick={(e) => handleSetRole(e.target.name)}
-              name="jobseeker"
-            >
-              <Button size="small" variant="contained">
+            <div className="content" color="inherit">
+              <Button
+                size="small"
+                variant="contained"
+                component={Link}
+                to="/jobs"
+                onClick={(e) => handleSetRole(e.target.name)}
+                name="jobseeker"
+              >
                 Looking for a job ...
               </Button>
-            </Link>
+            </div>
           </div>
         ) : (
           <div className="image-wrapper">
             <img className="zoom" src="Entrepreneur_managing.svg" />
-            <Link
-              className="content"
-              component={Link}
-              to="/login"
-              color="inherit"
-            >
-              <Button size="small" variant="contained">
+            <div className="content" color="inherit">
+              <Button
+                size="small"
+                variant="contained"
+                component={Link}
+                to="/login"
+              >
                 Looking for a job ...
               </Button>
-            </Link>
+            </div>
           </div>
         )}
       </div>
@@ -40,31 +41,32 @@ const Home = ({ handleSetRole, currentUser }) => {
         {currentUser ? (
           <div className="image-wrapper">
             <img className="zoom" src="Business_Contract.svg" />
-            <Link
-              className="content"
-              color="inherit"
-              to="/newjob"
-              onClick={(e) => handleSetRole(e.target.name)}
-              name="employer"
-            >
-              <Button size="small" variant="contained">
+            <div className="content" color="inherit">
+              <Button
+                size="small"
+                variant="contained"
+                component={Link}
+                to="/newjob"
+                onClick={(e) => handleSetRole(e.target.name)}
+                name="employer"
+              >
                 Looking for a helper ...
               </Button>
-            </Link>
+            </div>
           </div>
         ) : (
           <div className="image-wrapper">
             <img className="zoom" src="Business_Contract.svg" />
-            <Link
-              className="content"
-              component={Link}
-              to="/login"
-              color="inherit"
-            >
-              <Button size="small" variant="contained">
+            <div className="content" component={Link} color="inherit">
+              <Button
+                size="small"
+                variant="contained"
+                component={Link}
+                to="/login"
+              >
                 Looking for a helper ...
               </Button>
-            </Link>
+            </div>
           </div>
         )}
       </div>
