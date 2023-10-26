@@ -13,7 +13,7 @@ class Hires(Resource):
         hires = hires_schema.dump(Hire.query.all())
         return make_response(hires, 200)
     
-    @login_required
+    # @login_required
     def post(self):
         try:
             data = request.get_json()

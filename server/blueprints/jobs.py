@@ -24,7 +24,6 @@ class Jobs(Resource):
         jobs = jobs_schema.dump(Job.query.order_by(Job.created_at.desc()).all())
         return make_response(jobs, 200)
 
-    @login_required
     def post(self):
         try:
             data = request.get_json()

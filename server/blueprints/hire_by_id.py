@@ -13,7 +13,7 @@ class HireById(Resource):
         hire = hire_schema.dump(db.session.get(Hire, id))
         return make_response(hire, 200)
 
-    @login_required    
+    # @login_required    
     def delete(self, id):
         try:
             hire = db.session.get(Hire, id)

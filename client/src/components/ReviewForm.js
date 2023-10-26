@@ -54,7 +54,7 @@ function ReviewForm({ currentUser, userRole, job, handleProfileUser }) {
     },
     validationSchema: reviewSchema,
     onSubmit: (values) => {
-      fetch("/reviews", {
+      fetch(" http://localhost:5555/reviews", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),

@@ -87,7 +87,7 @@ const App = () => {
   };
 
   const hangleAllJobs = () => {
-    setFilterJobs(jobs);
+    setFilterJobs(jobs?.filter((job) => job.status === "active"))
   }
 
   const updateCurrentUser = (updateUser) => {
@@ -116,8 +116,7 @@ const App = () => {
       if (res.ok) {
         res.json().then((data) => {
           jobDispatch({ type: "patch", payload: data });
-          const filterPastJob = jobs.filter((item) => item.id !== data.id);
-          setFilterJobs((current) => [current, ...filterPastJob]);
+          hangleAllJobs()
         });
       }
     });
@@ -143,9 +142,10 @@ const App = () => {
 
   const handleJobsByLocation = (type) => {
     setFilterJobs(
-      jobs?.filter((job) => job.city.toLowerCase().includes(type.toLowerCase()))
+      filterJobs.filter((job) => job.city.toLowerCase().includes(type.toLowerCase()))
     );
   };
+  console.log(filterJobs)
 
   const handleActiveJob = (active) => {
     if (active) {
@@ -182,16 +182,13 @@ const App = () => {
               res.json().then((data) => {
                 setApplyJob(data);
                 jobDispatch({ type: "patch", payload: data });
-                setFilterJobs((current) =>
-                  current.filter((item) => item.id !== job.id)
-                );
+                hangleAllJobs();
               });
             }
           })
           .catch((err) => console.error(err));
       });
   };
-
   const handleProfileUser = (user) => {
     setProfileuser(user);
   };
@@ -285,7 +282,7 @@ const App = () => {
                 theme={theme}
                 userRole={userRole}
                 currentUser={currentUser}
-                jobs={jobs.filter((job) => !job.hire_id)}
+                jobs={filterJobs}
                 handleJobDelete={handleJobDelete}
                 handleSubmitJob={handleSubmitJob}
                 handleJobsByLocation={handleJobsByLocation}

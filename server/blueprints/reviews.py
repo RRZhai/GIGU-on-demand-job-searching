@@ -13,7 +13,7 @@ class Reviews(Resource):
         reviews = reviews_schema.dump(Review.query.order_by(Review.created_at.desc()).all())
         return make_response(reviews, 200)
     
-    @login_required
+    # @login_required
     def post(self):
         try:
             data = request.get_json()

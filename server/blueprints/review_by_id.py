@@ -14,7 +14,6 @@ class ReviewById(Resource):
         return make_response(review, 200)
     
 
-    @login_required
     def delete(self, id):
         try:
             review = db.session.get(Review, id)

@@ -115,6 +115,7 @@ function HeaderBar({
                 color="text.primary"
                 component={Link}
                 to="/jobs"
+                onClick={hangleAllJobs}
               >
                 All Active Jobs
               </Button>
